@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server'
 const ALLOWED_DOMAIN = 'www.strangermingle.com';
 const ALLOWED_DOMAIN_WITHOUT_WWW = 'strangermingle.com';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
     const url = request.nextUrl;
     const hostname = request.headers.get('host') || '';
     
