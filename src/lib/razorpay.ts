@@ -1,6 +1,15 @@
 import Razorpay from 'razorpay';
 
-// Initialize Razorpay instance
+/**
+ * Initialize Razorpay instance
+ * 
+ * IMPORTANT: Configure allowed domains in Razorpay Dashboard:
+ * - Go to Settings → Configuration → Allowed Domains
+ * - Add: https://www.strangermingle.com
+ * - Add: https://strangermingle.com (optional, will redirect to www)
+ * 
+ * This ensures payment gateway only works from the authorized domain.
+ */
 export function getRazorpayInstance(): Razorpay {
     const keyId = process.env.RAZORPAY_KEY_ID;
     const keySecret = process.env.RAZORPAY_KEY_SECRET;

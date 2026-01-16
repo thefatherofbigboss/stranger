@@ -6,6 +6,28 @@ import { createServerClient } from '@/lib/supabaseClient';
 
 export async function POST(request: NextRequest) {
     try {
+        // Validate domain - only allow requests from www.strangermingle.com
+        const origin = request.headers.get('origin');
+        const referer = request.headers.get('referer');
+        const host = request.headers.get('host');
+        
+        const allowedDomains = ['https://www.strangermingle.com', 'https://strangermingle.com'];
+        const isLocalhost = host?.includes('localhost') || host?.includes('127.0.0.1');
+        
+        // In production, enforce domain restrictions
+        if (process.env.NODE_ENV === 'production' && !isLocalhost) {
+            const isValidOrigin = origin && allowedDomains.some(domain => origin.startsWith(domain));
+            const isValidReferer = referer && allowedDomains.some(domain => referer.startsWith(domain));
+            
+            if (!isValidOrigin && !isValidReferer) {
+                console.error('Invalid domain for payment request:', { origin, referer, host });
+                return NextResponse.json(
+                    { error: 'Access denied: This API is only accessible from www.strangermingle.com' },
+                    { status: 403 }
+                );
+            }
+        }
+        
         const body = await request.json();
         const { eventId, name, phone, email } = body;
 
