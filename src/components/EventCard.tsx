@@ -41,7 +41,7 @@ export default function EventCard({ event }: EventCardProps) {
         <>
             <div className="group bg-white border border-gray-200 rounded-3xl overflow-hidden hover:border-blue-500/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10 shadow-lg h-full flex flex-col">
                 {/* Image/Header Section */}
-                <div className={`h-56 bg-gradient-to-br ${gradient} relative overflow-hidden`}>
+                <div className={`h-56 bg-linear-to-br ${gradient} relative overflow-hidden`}>
                 {event.image_url ? (
                     <>
                         <Image
@@ -51,10 +51,10 @@ export default function EventCard({ event }: EventCardProps) {
                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
                     </>
                 ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br opacity-80" />
+                    <div className="absolute inset-0 bg-linear-to-br opacity-80" />
                 )}
                 
                 {/* Badges */}
@@ -181,7 +181,7 @@ export default function EventCard({ event }: EventCardProps) {
                     className={`w-full py-3.5 rounded-xl font-semibold text-base transition-all duration-300 ${
                         isSoldOut 
                             ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
-                            : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]'
+                            : 'bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]'
                     }`}
                     disabled={isSoldOut}
                 >

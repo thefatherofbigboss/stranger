@@ -243,10 +243,10 @@ export default function FAQs() {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <div className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 pt-32 pb-16">
+            <div className="bg-linear-to-br from-blue-50 via-purple-50 to-pink-50 pt-32 pb-16">
                 <div className="max-w-4xl mx-auto px-8">
                     <div className="text-center mb-8">
-                        <h1 className="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                        <h1 className="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-purple-600">
                             Frequently Asked Questions About Making Friends in India
                         </h1>
                         <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
@@ -262,10 +262,10 @@ export default function FAQs() {
                     <h2 className="text-3xl font-bold text-gray-900 mb-6">Quick Answers to Common Questions About Friendship Meetups</h2>
                     <div className="prose prose-lg max-w-none text-gray-700 space-y-4">
                         <p className="leading-relaxed">
-                            Making friends as an adult in India can feel impossible – especially when you're new to a city, working long hours, or have lost touch with your college crowd. Stranger Mingle exists to change that through real, offline weekend events where genuine friendships form naturally.
+                            Making friends as an adult in India can feel impossible – especially when you&apos;re new to a city, working long hours, or have lost touch with your college crowd. Stranger Mingle exists to change that through real, offline weekend events where genuine friendships form naturally.
                         </p>
                         <p className="leading-relaxed">
-                            Below you'll find answers to the most common questions about how Stranger Mingle works, event safety, registration, payments, and what to expect. If you don't find your answer here, reach out to us directly – we're always happy to help.
+                            Below you&apos;ll find answers to the most common questions about how Stranger Mingle works, event safety, registration, payments, and what to expect. If you don&apos;t find your answer here, reach out to us directly – we&apos;re always happy to help.
                         </p>
                     </div>
                 </div>
@@ -317,7 +317,7 @@ export default function FAQs() {
                                     <summary className="font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between">
                                         <span className="text-lg pr-4">{faq.q}</span>
                                         <svg 
-                                            className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" 
+                                            className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform shrink-0" 
                                             fill="none" 
                                             stroke="currentColor" 
                                             viewBox="0 0 24 24"
@@ -335,10 +335,10 @@ export default function FAQs() {
                 ))}
 
                 {/* Still Have Questions */}
-                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 text-center border border-blue-100 mt-16">
+                <div className="bg-linear-to-br from-blue-50 to-purple-50 rounded-2xl p-8 text-center border border-blue-100 mt-16">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">Still Have Questions?</h3>
                     <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
-                        Can't find the answer you're looking for? Our support team is here to help. Reach out and we'll get back to you within 24-48 hours.
+                        Can&apos;t find the answer you&apos;re looking for? Our support team is here to help. Reach out and we&apos;ll get back to you within 24-48 hours.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a 
@@ -362,7 +362,7 @@ export default function FAQs() {
                     <div className="grid md:grid-cols-2 gap-6">
                         <a href="/about" className="block p-4 bg-white rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all group">
                             <h4 className="font-bold text-gray-900 mb-2 group-hover:text-blue-600">About Stranger Mingle</h4>
-                            <p className="text-sm text-gray-600">Learn about our mission, values, and how we're building safe friendship communities across India.</p>
+                            <p className="text-sm text-gray-600">Learn about our mission, values, and how we&apos;re building safe friendship communities across India.</p>
                         </a>
                         <a href="/safety-guidelines" className="block p-4 bg-white rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all group">
                             <h4 className="font-bold text-gray-900 mb-2 group-hover:text-blue-600">Safety Guidelines</h4>
@@ -374,7 +374,7 @@ export default function FAQs() {
                         </a>
                         <a href="/events" className="block p-4 bg-white rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all group">
                             <h4 className="font-bold text-gray-900 mb-2 group-hover:text-blue-600">Browse Events</h4>
-                            <p className="text-sm text-gray-600">See what's happening this weekend in your city and register for upcoming friendship meetups.</p>
+                            <p className="text-sm text-gray-600">See what&apos;s happening this weekend in your city and register for upcoming friendship meetups.</p>
                         </a>
                     </div>
                 </div>

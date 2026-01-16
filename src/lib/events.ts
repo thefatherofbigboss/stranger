@@ -218,6 +218,12 @@ export async function createBooking(bookingData: {
     
     if (error) {
         console.error('Error creating payment detail:', error);
+        console.error('Error details:', {
+            message: error.message,
+            code: error.code,
+            details: error.details,
+            hint: error.hint,
+        });
         return null;
     }
     

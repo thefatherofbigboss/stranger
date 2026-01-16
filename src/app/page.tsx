@@ -27,7 +27,7 @@ export default async function Home() {
         <section className="relative w-full max-w-7xl mx-auto px-4 pt-32 pb-20 sm:pt-40 sm:pb-24 flex flex-col items-center text-center">
 
           {/* Floating Hero Images */}
-          <div className="absolute top-20 left-4 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rotate-[-6deg] animate-in fade-in zoom-in duration-700 delay-500 hidden sm:block">
+          <div className="absolute top-20 left-4 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 -rotate-6 animate-in fade-in zoom-in duration-700 delay-500 hidden sm:block">
             <Image
               src="/images/pexels-cedric-fauntleroy-7219325.png"
               alt="Friends having fun"
@@ -35,7 +35,7 @@ export default async function Home() {
               className="object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform border-4 border-white/50"
             />
           </div>
-          <div className="absolute top-24 right-4 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rotate-[6deg] animate-in fade-in zoom-in duration-700 delay-600 hidden sm:block">
+          <div className="absolute top-24 right-4 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rotate-6 animate-in fade-in zoom-in duration-700 delay-600 hidden sm:block">
             <Image
               src="/images/pexels-kampus-5935260.png"
               alt="Group selfie"
@@ -43,7 +43,7 @@ export default async function Home() {
               className="object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform border-4 border-white/50"
             />
           </div>
-          <div className="absolute bottom-10 left-10 w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rotate-[12deg] animate-in fade-in zoom-in duration-700 delay-700 hidden md:block">
+          <div className="absolute bottom-10 left-10 w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rotate-12 animate-in fade-in zoom-in duration-700 delay-700 hidden md:block">
             <Image
               src="/images/pexels-kampus-8380074.png"
               alt="Outdoor activity"
@@ -51,7 +51,7 @@ export default async function Home() {
               className="object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform border-4 border-white/50"
             />
           </div>
-          <div className="absolute bottom-12 right-10 w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rotate-[-12deg] animate-in fade-in zoom-in duration-700 delay-800 hidden md:block">
+          <div className="absolute bottom-12 right-10 w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 -rotate-12 animate-in fade-in zoom-in duration-700 delay-800 hidden md:block">
             <Image
               src="/images/pexels-silverkblack-23495575.png"
               alt="Friends laughing"
@@ -65,7 +65,7 @@ export default async function Home() {
           </span>
           <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-gray-900 mb-6 leading-tight max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200 relative z-10">
             Best Stranger Meetups in Pune <br className="hidden sm:block" />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
+            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-600 via-purple-600 to-pink-600">
               Offline Weekly Events
             </span>
           </h1>
@@ -114,7 +114,7 @@ export default async function Home() {
             Why Stranger Mingle Exists
         </h2>
         <p className="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-16">
-            We're solving a problem millions of Indians face: feeling lonely in a crowded city. Making friends after college shouldn't be this hard.
+            We&apos;re solving a problem millions of Indians face: feeling lonely in a crowded city. Making friends after college shouldn&apos;t be this hard.
         </p>
         
         <div className="grid md:grid-cols-3 gap-8 sm:gap-12 mb-16">
@@ -123,10 +123,10 @@ export default async function Home() {
                     🏙️
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                    You're Not Alone in Feeling Alone
+                    You&apos;re Not Alone in Feeling Alone
                 </h3>
                 <p className="text-gray-600 leading-relaxed text-center">
-                    Moved to a new city? Lost touch with college friends? Working from home with no social life? You're surrounded by millions, yet eating dinner alone. We get it—because we've been there too.
+                    Moved to a new city? Lost touch with college friends? Working from home with no social life? You&apos;re surrounded by millions, yet eating dinner alone. We get it—because we&apos;ve been there too.
                 </p>
             </div>
             
@@ -138,7 +138,7 @@ export default async function Home() {
                     Real Connections, Not Online Chats
                 </h3>
                 <p className="text-gray-600 leading-relaxed text-center">
-                    Friendships happen when you're doing something together, not swiping through profiles. We create real spaces—chai circles, treks, game nights—where genuine bonds form naturally.
+                    Friendships happen when you&apos;re doing something together, not swiping through profiles. We create real spaces—chai circles, treks, game nights—where genuine bonds form naturally.
                 </p>
             </div>
             
@@ -150,13 +150,13 @@ export default async function Home() {
                     Safe Spaces for Everyone
                 </h3>
                 <p className="text-gray-600 leading-relaxed text-center">
-                    We don't judge by caste, class, colour, or background. Zero tolerance for harassment. Verified members only. Small groups where everyone matters. This is where India makes friends the right way.
+                    We don&apos;t judge by caste, class, colour, or background. Zero tolerance for harassment. Verified members only. Small groups where everyone matters. This is where India makes friends the right way.
                 </p>
             </div>
         </div>
 
         {/* How It Works */}
-        <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 sm:p-12 border border-blue-100">
+        <div className="bg-linear-to-br from-blue-50 to-purple-50 rounded-2xl p-8 sm:p-12 border border-blue-100">
             <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">
                 How It Works
             </h3>
@@ -206,7 +206,7 @@ export default async function Home() {
           <h2 className="text-2xl font-semibold text-gray-500 mb-10 tracking-wide uppercase">Trusted by 2,000+ Punekars</h2>
           <div className="grid md:grid-cols-2 gap-8 text-left">
             <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">"Moved to Pune for my job and knew literally no one. Went to the Sunday Chai event thinking it would be awkward, but met 3 people who are now my regular trekking group. Best decision ever."</p>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">&quot;Moved to Pune for my job and knew literally no one. Went to the Sunday Chai event thinking it would be awkward, but met 3 people who are now my regular trekking group. Best decision ever.&quot;</p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">R</div>
                 <div>
@@ -216,7 +216,7 @@ export default async function Home() {
               </div>
             </div>
             <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">"Apps just weren't working for me. I wanted to meet people naturally. The board game night was so much fun, and I didn't have to worry about forcing conversation."</p>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">&quot;Apps just weren&apos;t working for me. I wanted to meet people naturally. The board game night was so much fun, and I didn&apos;t have to worry about forcing conversation.&quot;</p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold">P</div>
                 <div>
@@ -230,7 +230,7 @@ export default async function Home() {
 
         {/* Safety / Values */}
         <section className="w-full max-w-7xl mx-auto px-4 py-12 mb-20">
-          <div className="bg-gradient-to-r from-blue-900/10 to-purple-900/10 border border-white/10 rounded-3xl p-8 sm:p-12 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-8">
+          <div className="bg-linear-to-r from-blue-900/10 to-purple-900/10 border border-white/10 rounded-3xl p-8 sm:p-12 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-8">
             <div className="max-w-2xl">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">A Community Built on Trust</h2>
               <p className="text-gray-600 text-lg">

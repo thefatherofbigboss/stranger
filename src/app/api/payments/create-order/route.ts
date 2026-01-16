@@ -6,28 +6,6 @@ import { createServerClient } from '@/lib/supabaseClient';
 
 export async function POST(request: NextRequest) {
     try {
-        // Validate domain - only allow requests from www.strangermingle.com
-        const origin = request.headers.get('origin');
-        const referer = request.headers.get('referer');
-        const host = request.headers.get('host');
-        
-        const allowedDomains = ['https://www.strangermingle.com', 'https://strangermingle.com'];
-        const isLocalhost = host?.includes('localhost') || host?.includes('127.0.0.1');
-        
-        // In production, enforce domain restrictions
-        if (process.env.NODE_ENV === 'production' && !isLocalhost) {
-            const isValidOrigin = origin && allowedDomains.some(domain => origin.startsWith(domain));
-            const isValidReferer = referer && allowedDomains.some(domain => referer.startsWith(domain));
-            
-            if (!isValidOrigin && !isValidReferer) {
-                console.error('Invalid domain for payment request:', { origin, referer, host });
-                return NextResponse.json(
-                    { error: 'Access denied: This API is only accessible from www.strangermingle.com' },
-                    { status: 403 }
-                );
-            }
-        }
-        
         const body = await request.json();
         const { eventId, name, phone, email } = body;
 
@@ -100,18 +78,47 @@ export async function POST(request: NextRequest) {
         }
 
         // Create Razorpay order
-        const razorpay = getRazorpayInstance();
-        const order = await razorpay.orders.create({
-            amount: amountInPaise,
-            currency: 'INR',
-            receipt: `event_${eventId}_${Date.now()}`,
-            notes: {
-                event_id: eventId,
-                event_name: event.event_name,
-                user_name: name,
-                user_phone: phone,
-            },
-        });
+        let razorpay;
+        try {
+            razorpay = getRazorpayInstance();
+        } catch (razorpayError: any) {
+            console.error('Failed to initialize Razorpay:', razorpayError);
+            return NextResponse.json(
+                { error: 'Payment gateway configuration error. Please check Razorpay keys.' },
+                { status: 500 }
+            );
+        }
+
+        let order;
+        try {
+            // Generate receipt ID (max 40 characters for Razorpay)
+            // Format: EVT-{shortEventId}-{timestamp}
+            // Use first 8 chars of eventId UUID and last 8 digits of timestamp
+            const shortEventId = eventId.substring(0, 8);
+            const timestamp = Date.now().toString().slice(-8);
+            const receipt = `EVT-${shortEventId}-${timestamp}`;
+            
+            order = await razorpay.orders.create({
+                amount: amountInPaise,
+                currency: 'INR',
+                receipt: receipt,
+                notes: {
+                    event_id: eventId,
+                    event_name: event.event_name,
+                    user_name: name,
+                    user_phone: phone,
+                },
+            });
+        } catch (razorpayOrderError: any) {
+            console.error('Failed to create Razorpay order:', razorpayOrderError);
+            return NextResponse.json(
+                { 
+                    error: razorpayOrderError.error?.description || 'Failed to create payment order',
+                    details: razorpayOrderError.error
+                },
+                { status: 500 }
+            );
+        }
 
         // Create payment_details record with status 'pending'
         const paymentDetail = await createBooking({
@@ -127,8 +134,12 @@ export async function POST(request: NextRequest) {
         });
 
         if (!paymentDetail) {
+            console.error('Failed to create payment_detail record. Check server logs for details.');
             return NextResponse.json(
-                { error: 'Failed to create payment record' },
+                { 
+                    error: 'Failed to create payment record',
+                    hint: 'Check server logs for detailed error information. This might be due to RLS policies or database constraints.'
+                },
                 { status: 500 }
             );
         }
@@ -143,8 +154,26 @@ export async function POST(request: NextRequest) {
         });
     } catch (error: any) {
         console.error('Error creating Razorpay order:', error);
+        console.error('Error stack:', error.stack);
+        console.error('Error details:', {
+            message: error.message,
+            name: error.name,
+            code: error.code,
+        });
+        
+        // Provide more detailed error message
+        let errorMessage = 'Failed to create order';
+        if (error.message) {
+            errorMessage = error.message;
+        } else if (error.error?.description) {
+            errorMessage = error.error.description;
+        }
+        
         return NextResponse.json(
-            { error: error.message || 'Failed to create order' },
+            { 
+                error: errorMessage,
+                details: process.env.NODE_ENV === 'development' ? error.stack : undefined
+            },
             { status: 500 }
         );
     }

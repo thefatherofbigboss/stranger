@@ -71,7 +71,13 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.error || 'Failed to create order');
+                const errorMessage = data.error || data.message || 'Failed to create order';
+                console.error('Order creation failed:', {
+                    status: response.status,
+                    error: data.error,
+                    details: data.details,
+                });
+                throw new Error(errorMessage);
             }
 
             // Initialize Razorpay Checkout
