@@ -3,6 +3,8 @@ import Image from "next/image";
 import { getAllLiveEvents } from "@/lib/events";
 import EventCard from "@/components/EventCard";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: "Find Local Groups, Events and Meetups | Stranger Mingle",
   description: "Join India's most active community for making friends. Weekly offline events including treks, board game nights, chai circles, and heritage walks. No apps, just real connection.",

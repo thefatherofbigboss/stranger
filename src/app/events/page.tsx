@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { getAllLiveEvents } from "@/lib/events";
 import EventCard from "@/components/EventCard";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
     title: "All Events - Stranger Mingle | Weekend Meetups",
     description: "Browse all upcoming offline events. Treks, workshops, social mixers, and more.",

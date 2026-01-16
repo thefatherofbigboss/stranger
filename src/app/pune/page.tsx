@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import CityEventsPage from "@/components/CityEventsPage";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
     title: "Pune Events - Stranger Mingle | Weekend Meetups in Pune",
     description: "Browse upcoming offline events in Pune. Treks, workshops, social mixers, and more.",
