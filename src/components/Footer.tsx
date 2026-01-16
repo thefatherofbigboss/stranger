@@ -1,0 +1,56 @@
+import Link from 'next/link';
+
+export default function Footer() {
+    const currentYear = new Date().getFullYear();
+
+    return (
+        <footer className="w-full border-t border-gray-200 bg-gray-50/80 backdrop-blur-xl mt-auto z-10 relative">
+            <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div className="flex flex-col items-center md:items-start gap-2">
+                        <span className="font-bold text-gray-900 tracking-tight">Stranger Mingle</span>
+                        <span className="text-gray-500 text-sm">
+                            © {currentYear} All rights reserved.
+                        </span>
+                    </div>
+
+                    <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-500">
+
+
+                        <Link href="/team" className="hover:text-gray-900 transition-colors">
+                            Team
+                        </Link>
+
+                        <Link href="/testimonials" className="hover:text-gray-900 transition-colors">
+                            Testimonials
+                        </Link>
+
+                        <Link href="/faqs" className="hover:text-gray-900 transition-colors">
+                            FAQs
+                        </Link>
+                        <div className="hidden md:block w-px h-4 bg-gray-300 mx-2"></div>
+                        <Link href="/privacy-policy" className="hover:text-gray-900 transition-colors">
+                            Privacy
+                        </Link>
+                        <Link href="/refund-policy" className="hover:text-gray-900 transition-colors">
+                            Refund Policy
+                        </Link>
+                        <Link href="/safety-guidelines" className="hover:text-gray-900 transition-colors">
+                            Safety
+                        </Link>
+                        <Link href="/terms" className="hover:text-gray-900 transition-colors">
+                            Terms
+                        </Link>
+                        <Link href="/disclaimer" className="hover:text-gray-900 transition-colors">
+                            Disclaimer
+                        </Link>
+                        <div className="hidden md:block w-px h-4 bg-gray-300 mx-2"></div>
+                        <Link href="/blog" className="hover:text-gray-900 transition-colors font-semibold text-blue-600">
+                            Blog
+                        </Link>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+    );
+}
