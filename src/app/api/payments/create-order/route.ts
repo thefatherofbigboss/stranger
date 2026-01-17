@@ -4,8 +4,55 @@ import { getEventById, createBooking } from '@/lib/events';
 import { createOrUpdateUserProfile } from '@/lib/userProfile';
 import { createServerClient } from '@/lib/supabaseClient';
 
+// Rate limiting for payment orders
+const orderCache = new Map<string, number[]>();
+const ORDER_RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
+const MAX_ORDERS_PER_IP = 10;
+
+function isRateLimited(ip: string): boolean {
+    const now = Date.now();
+    const orders = orderCache.get(ip) || [];
+    const recentOrders = orders.filter(time => now - time < ORDER_RATE_LIMIT_WINDOW);
+    
+    if (recentOrders.length >= MAX_ORDERS_PER_IP) {
+        return true;
+    }
+    
+    recentOrders.push(now);
+    orderCache.set(ip, recentOrders);
+    return false;
+}
+
+function getClientIP(request: NextRequest): string {
+    const forwarded = request.headers.get('x-forwarded-for');
+    const realIP = request.headers.get('x-real-ip');
+    return forwarded?.split(',')[0] || realIP || 'unknown';
+}
+
+// Sanitize input to prevent XSS
+function sanitize(str: string): string {
+    if (!str) return '';
+    return str
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;')
+        .trim()
+        .substring(0, 200); // Limit length
+}
+
 export async function POST(request: NextRequest) {
     try {
+        const clientIP = getClientIP(request);
+        
+        // Rate limiting
+        if (isRateLimited(clientIP)) {
+            return NextResponse.json(
+                { error: 'Too many requests. Please try again later.' },
+                { status: 429 }
+            );
+        }
+
         const body = await request.json();
         const { eventId, name, phone, email } = body;
 
@@ -17,14 +64,39 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        // Validate eventId is a valid UUID format
+        const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+        if (!uuidRegex.test(eventId)) {
+            return NextResponse.json(
+                { error: 'Invalid event ID format' },
+                { status: 400 }
+            );
+        }
+
         // Validate phone number format (basic validation)
         const phoneRegex = /^[6-9]\d{9}$/;
-        if (!phoneRegex.test(phone.replace(/\D/g, ''))) {
+        const cleanedPhone = phone.replace(/\D/g, '');
+        if (!phoneRegex.test(cleanedPhone)) {
             return NextResponse.json(
                 { error: 'Invalid phone number format' },
                 { status: 400 }
             );
         }
+
+        // Validate email format if provided
+        if (email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                return NextResponse.json(
+                    { error: 'Invalid email format' },
+                    { status: 400 }
+                );
+            }
+        }
+
+        // Sanitize inputs
+        const sanitizedName = sanitize(name);
+        const sanitizedEmail = email ? email.toLowerCase().trim().substring(0, 255) : null;
 
         // Get event details
         const event = await getEventById(eventId);
@@ -64,9 +136,9 @@ export async function POST(request: NextRequest) {
         // For now, we'll use null for user_id since we're not implementing auth yet
         // In the future, you can get user_id from the session
         const userProfile = await createOrUpdateUserProfile({
-            phone: phone.replace(/\D/g, ''), // Remove non-digits
-            name,
-            email: email || null,
+            phone: cleanedPhone,
+            name: sanitizedName,
+            email: sanitizedEmail,
             user_id: null, // TODO: Get from auth session when implemented
         });
 
@@ -105,8 +177,8 @@ export async function POST(request: NextRequest) {
                 notes: {
                     event_id: eventId,
                     event_name: event.event_name,
-                    user_name: name,
-                    user_phone: phone,
+                    user_name: sanitizedName,
+                    user_phone: cleanedPhone,
                 },
             });
         } catch (razorpayOrderError: any) {
@@ -124,8 +196,8 @@ export async function POST(request: NextRequest) {
         const paymentDetail = await createBooking({
             event_id: eventId,
             user_id: null, // TODO: Get from auth session when implemented
-            guest_email: email || null,
-            guest_phone: phone.replace(/\D/g, ''),
+            guest_email: sanitizedEmail,
+            guest_phone: cleanedPhone,
             spots_booked: 1, // Default to 1 spot per booking
             amount_paid: price,
             payment_status: 'pending',

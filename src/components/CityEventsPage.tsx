@@ -62,19 +62,19 @@ export default async function CityEventsPage({ cityName }: CityEventsPageProps) 
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://strangermingle.com"
+                                    "item": "https://www.strangermingle.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Events",
-                                    "item": "https://strangermingle.com/events"
+                                    "item": "https://www.strangermingle.com/events"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": cityName,
-                                    "item": `https://strangermingle.com/events/${cityName.toLowerCase()}`
+                                    "item": `https://www.strangermingle.com/events/${cityName.toLowerCase()}`
                                 }
                             ]
                         },

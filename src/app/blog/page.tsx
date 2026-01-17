@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllPosts, Post } from '@/lib/blog';
+import { getAllPosts, Post, formatBlogDate } from '@/lib/blog';
 import type { Metadata } from 'next';
+import BlogSidebar from '@/components/BlogSidebar';
 
 export const metadata: Metadata = {
     title: 'Stranger Mingle Blog | Friendship, Community, and Connection',
@@ -32,41 +33,51 @@ export default function BlogIndex() {
                 </div>
             </section>
 
-            {/* Blog Grid */}
+            {/* Main Content with Sidebar */}
             <main className="w-full max-w-7xl mx-auto px-4 py-16">
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {allPosts.map((post: Partial<Post>) => (
-                        <Link
-                            key={post.slug}
-                            href={`/blog/${post.slug}`}
-                            className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 block border border-gray-200"
-                        >
-                            <div className="relative h-48 w-full">
-                                <Image
-                                    src={post.image || '/images/default-blog.jpg'}
-                                    alt={post.title || 'Blog Post'}
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                />
-                            </div>
-                            <div className="p-6">
-                                <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
-                                    <span>{post.date}</span>
-                                    <span>•</span>
-                                    <span>{post.author}</span>
-                                </div>
-                                <h2 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
-                                    {post.title}
-                                </h2>
-                                <p className="text-gray-600 line-clamp-3 mb-4">
-                                    {post.excerpt}
-                                </p>
-                                <span className="text-blue-600 font-medium group-hover:underline">
-                                    Read more →
-                                </span>
-                            </div>
-                        </Link>
-                    ))}
+                <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                    {/* Blog Grid */}
+                    <div className="flex-1">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                            {allPosts.map((post: Partial<Post>) => (
+                                <Link
+                                    key={post.slug}
+                                    href={`/blog/${post.slug}`}
+                                    className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 block border border-gray-200"
+                                >
+                                    <div className="relative h-48 w-full">
+                                        <Image
+                                            src={post.image || '/images/default-blog.jpg'}
+                                            alt={post.title || 'Blog Post'}
+                                            fill
+                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                        />
+                                    </div>
+                                    <div className="p-6">
+                                        <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
+                                            <span>{formatBlogDate(post.date || '')}</span>
+                                            <span>•</span>
+                                            <span>{post.author}</span>
+                                        </div>
+                                        <h2 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                                            {post.title}
+                                        </h2>
+                                        <p className="text-gray-600 line-clamp-3 mb-4">
+                                            {post.excerpt}
+                                        </p>
+                                        <span className="text-blue-600 font-medium group-hover:underline">
+                                            Read more →
+                                        </span>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Sidebar */}
+                    <div className="lg:sticky lg:top-32 lg:self-start">
+                        <BlogSidebar />
+                    </div>
                 </div>
             </main>
 
@@ -78,7 +89,7 @@ export default function BlogIndex() {
                         "@type": "Blog",
                         "name": "Stranger Mingle Blog",
                         "description": "Stories about making friends and community building.",
-                        "url": "https://strangermingle.com/blog",
+                        "url": "https://www.strangermingle.com/blog",
                         "blogPost": allPosts.map((post) => ({
                             "@type": "BlogPosting",
                             "headline": post.title,
@@ -87,7 +98,7 @@ export default function BlogIndex() {
                                 "@type": "Person",
                                 "name": post.author
                             },
-                            "url": `https://strangermingle.com/blog/${post.slug}`
+                            "url": `https://www.strangermingle.com/blog/${post.slug}`
                         }))
                     })
                 }}

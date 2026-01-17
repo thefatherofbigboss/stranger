@@ -73,8 +73,7 @@ export async function POST(request: NextRequest) {
 
             // Check if already processed
             if (paymentDetail.payment_status === 'completed') {
-                console.log('Payment already processed:', orderId);
-                return NextResponse.json({ status: 'ok' });
+            return NextResponse.json({ status: 'ok' });
             }
 
             // Verify amount matches
@@ -156,7 +155,6 @@ export async function POST(request: NextRequest) {
                 );
             }
 
-            console.log('Payment completed successfully:', orderId);
             return NextResponse.json({ status: 'ok' });
         }
 
@@ -183,7 +181,6 @@ export async function POST(request: NextRequest) {
                 );
             }
 
-            console.log('Payment failed:', orderId);
             return NextResponse.json({ status: 'ok' });
         }
 

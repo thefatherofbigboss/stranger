@@ -62,3 +62,24 @@ export async function markdownToHtml(markdown: string) {
     const result = await remark().use(remarkGfm).use(html).process(markdown);
     return result.toString();
 }
+
+/**
+ * Format blog post date from YYYY-MM-DD to DD MMM YYYY format
+ * Example: "2026-01-17" -> "17 Jan 2026"
+ */
+export function formatBlogDate(dateString: string): string {
+    if (!dateString) return '';
+    
+    try {
+        const date = new Date(dateString);
+        const day = date.getDate().toString().padStart(2, '0');
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+        
+        return `${day} ${month} ${year}`;
+    } catch (error) {
+        console.error('Error formatting date:', error);
+        return dateString;
+    }
+}

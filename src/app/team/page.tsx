@@ -5,40 +5,37 @@ const teamMembers = [
     {
         name: "Trishul D N",
         role: "Founder",
-        image: "/images/team/arjun.png",
+        image: "/images/team/trishul.png",
         bio: "Trishul is on a mission to solve urban loneliness in India. With a background in psychology and business, he envisioned Stranger Mingle as a way to create meaningful human connections in our fast-paced cities.",
         icon: <Zap className="w-5 h-5" />,
         color: "text-yellow-600",
         bgColor: "bg-yellow-50",
         social: {
-            linkedin: "#",
-            twitter: "#"
+            linkedin: "https://www.linkedin.com/in/trishuldn/",
         }
     },
     {
         name: "Ashwini",
-        role: "CTO",
-        image: "/images/team/rohan.png",
+        role: "Co-Founder",
+        image: "/images/team/priya.png",
         bio: "A tech visionary who believes in using technology to bring people together rather than pull them apart. Ashwini ensures our platform is safe, seamless, and built for scale.",
         icon: <ShieldCheck className="w-5 h-5" />,
         color: "text-blue-600",
         bgColor: "bg-blue-50",
         social: {
-            linkedin: "#",
-            github: "#"
+            linkedin: "https://www.linkedin.com/company/strangermingle",
         }
     },
     {
         name: "Monali A C",
         role: "Legal and Safety Lead",
-        image: "/images/team/vikram.png",
+        image: "/images/team/anjali.png",
         bio: "Monali oversees our verification processes and safety protocols to ensure Stranger Mingle remains a secure space.",
         icon: <ShieldAlert className="w-5 h-5" />,
         color: "text-red-600",
         bgColor: "bg-red-50",
         social: {
-            linkedin: "#",
-            mail: "mailto:safety@strangermingle.com"
+            linkedin: "https://www.linkedin.com/company/strangermingle",
         }
     }
 ];
@@ -101,18 +98,18 @@ export default function TeamPage() {
                                         <Linkedin className="w-5 h-5" />
                                     </a>
                                 )}
-                                {member.social.twitter && (
-                                    <a href={member.social.twitter} className="p-2 text-gray-400 hover:text-blue-400 transition-colors">
+                                {(member.social as any).twitter && (
+                                    <a href={(member.social as any).twitter} className="p-2 text-gray-400 hover:text-blue-400 transition-colors">
                                         <Twitter className="w-5 h-5" />
                                     </a>
                                 )}
-                                {member.social.github && (
-                                    <a href={member.social.github} className="p-2 text-gray-400 hover:text-gray-900 transition-colors">
+                                {(member.social as any).github && (
+                                    <a href={(member.social as any).github} className="p-2 text-gray-400 hover:text-gray-900 transition-colors">
                                         <Github className="w-5 h-5" />
                                     </a>
                                 )}
-                                {member.social.mail && (
-                                    <a href={member.social.mail} className="p-2 text-gray-400 hover:text-red-500 transition-colors">
+                                {(member.social as any).mail && (
+                                    <a href={(member.social as any).mail} className="p-2 text-gray-400 hover:text-red-500 transition-colors">
                                         <Mail className="w-5 h-5" />
                                     </a>
                                 )}

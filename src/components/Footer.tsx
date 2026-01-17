@@ -32,6 +32,9 @@ export default function Footer() {
                         <Link href="/privacy-policy" className="hover:text-gray-900 transition-colors">
                             Privacy
                         </Link>
+                        <Link href="/cookie-policy" className="hover:text-gray-900 transition-colors">
+                            Cookie Policy
+                        </Link>
                         <Link href="/refund-policy" className="hover:text-gray-900 transition-colors">
                             Refund Policy
                         </Link>
@@ -47,6 +50,9 @@ export default function Footer() {
                         <div className="hidden md:block w-px h-4 bg-gray-300 mx-2"></div>
                         <Link href="/blog" className="hover:text-gray-900 transition-colors font-semibold text-blue-600">
                             Blog
+                        </Link>
+                        <Link href="/authors" className="hover:text-gray-900 transition-colors">
+                            Authors
                         </Link>
                     </nav>
                 </div>

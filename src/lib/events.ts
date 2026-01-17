@@ -21,6 +21,13 @@ export interface Event {
     image_url: string | null;
     event_type: 'online' | 'in-person';
     status: 'live' | 'closed' | 'cancelled';
+    description: string | null;
+    google_map_link: string | null;
+    organizer_name: string | null;
+    organizer_email: string | null;
+    organizer_phone: string | null;
+    whatsapp_link: string | null;
+    slug: string | null;
     created_at: string;
     updated_at: string;
 }
@@ -185,6 +192,91 @@ export async function getEventById(id: string): Promise<Event | null> {
     }
     
     return data;
+}
+
+// Public event query - only returns 'live' or 'closed' events (not 'cancelled')
+// This prevents unauthorized access to cancelled events via direct URL
+export async function getPublicEventById(id: string): Promise<Event | null> {
+    const supabase = createServerClient();
+    
+    const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('id', id)
+        .in('status', ['live', 'closed'])
+        .single();
+    
+    if (error) {
+        console.error('Error fetching public event by id:', error);
+        return null;
+    }
+    
+    return data;
+}
+
+// Public event query by slug - only returns 'live' or 'closed' events (not 'cancelled')
+// This is the preferred method for public URLs as slugs are SEO-friendly
+// Also supports UUID fallback for backward compatibility (if slug not found and param looks like UUID, try querying by id)
+export async function getPublicEventBySlug(slug: string): Promise<Event | null> {
+    const supabase = createServerClient();
+    
+    if (!slug) {
+        console.error('getPublicEventBySlug: slug is empty or undefined');
+        return null;
+    }
+    
+    // Check if slug looks like a UUID (backward compatibility)
+    // UUID format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    const isUuid = uuidPattern.test(slug);
+    
+    // If it's a UUID, query by id directly (matching the working getPublicEventById pattern)
+    if (isUuid) {
+        const { data, error } = await supabase
+            .from('events')
+            .select('*')
+            .eq('id', slug)
+            .in('status', ['live', 'closed'])
+            .single();
+        
+        if (error) {
+            // PGRST116 means no rows found - that's OK, just return null
+            if (error.code !== 'PGRST116') {
+                console.error('Error fetching public event by id:', {
+                    id: slug,
+                    error: error.message,
+                    code: error.code,
+                    details: error.details
+                });
+            }
+            return null;
+        }
+        
+        return data || null;
+    }
+    
+    // Otherwise, try to find by slug
+    const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('slug', slug)
+        .in('status', ['live', 'closed'])
+        .single();
+    
+    if (error) {
+        // PGRST116 means no rows found - that's OK, just return null
+        if (error.code !== 'PGRST116') {
+            console.error('Error fetching public event by slug:', {
+                slug,
+                error: error.message,
+                code: error.code,
+                details: error.details
+            });
+        }
+        return null;
+    }
+    
+    return data || null;
 }
 
 export async function createBooking(bookingData: {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getAllLiveEvents } from "@/lib/events";
 import EventCard from "@/components/EventCard";
+import RecentPosts from "@/components/RecentPosts";
 
 export const dynamic = 'force-dynamic';
 
@@ -24,83 +25,58 @@ export default async function Home() {
       <main className="relative z-10 flex flex-col items-center min-h-screen">
 
         {/* Hero Section */}
-        <section className="relative w-full max-w-7xl mx-auto px-4 pt-32 pb-20 sm:pt-40 sm:pb-24 flex flex-col items-center text-center">
-
-          {/* Floating Hero Images */}
-          <div className="absolute top-20 left-4 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 -rotate-6 animate-in fade-in zoom-in duration-700 delay-500 hidden sm:block">
+        <section className="relative w-full pt-32 pb-20 sm:pt-40 sm:pb-24 flex flex-col items-center text-center min-h-[600px] sm:min-h-[700px] overflow-hidden mb-20">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
             <Image
-              src="/images/pexels-cedric-fauntleroy-7219325.png"
-              alt="Friends having fun"
+              src="https://res.cloudinary.com/dt3rse8bg/image/upload/v1768619953/group-young-successful-people-vacation-friends-enjoying-game-lake-positive-emotions_hycidp.jpg"
+              alt="Friends having fun at a Stranger Mingle event"
               fill
-              className="object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform border-4 border-white/50"
+              className="object-cover"
+              priority
             />
-          </div>
-          <div className="absolute top-24 right-4 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rotate-6 animate-in fade-in zoom-in duration-700 delay-600 hidden sm:block">
-            <Image
-              src="/images/pexels-kampus-5935260.png"
-              alt="Group selfie"
-              fill
-              className="object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform border-4 border-white/50"
-            />
-          </div>
-          <div className="absolute bottom-10 left-10 w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rotate-12 animate-in fade-in zoom-in duration-700 delay-700 hidden md:block">
-            <Image
-              src="/images/pexels-kampus-8380074.png"
-              alt="Outdoor activity"
-              fill
-              className="object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform border-4 border-white/50"
-            />
-          </div>
-          <div className="absolute bottom-12 right-10 w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 -rotate-12 animate-in fade-in zoom-in duration-700 delay-800 hidden md:block">
-            <Image
-              src="/images/pexels-silverkblack-23495575.png"
-              alt="Friends laughing"
-              fill
-              className="object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform border-4 border-white/50"
-            />
+            <div className="absolute inset-0 bg-black/70"></div>
           </div>
 
-          <span className="px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-sm font-medium text-blue-600 inline-block mb-6 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100 relative z-10">
-            👋 New in Pune? Alone this weekend?
-          </span>
-          <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-gray-900 mb-6 leading-tight max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200 relative z-10">
-            Best Stranger Meetups in Pune <br className="hidden sm:block" />
-            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-600 via-purple-600 to-pink-600">
-              Offline Weekly Events
+          {/* Content */}
+          <div className="relative z-10 w-full max-w-4xl mx-auto">
+            <span className="px-4 py-2 rounded-full bg-blue-50/90 backdrop-blur-sm border border-blue-100 text-sm font-medium text-blue-600 inline-block mb-6 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100">
+              👋 New in Pune? Alone this weekend?
             </span>
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 relative z-10">
-          Stranger Mingle is built to help people make real connections locally, not online. We create safe spaces where strangers meet and friendships begin through organized weekend events across Indian cities.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-in fade-in slide-in-from-bottom-4 duration-500 delay-400 relative z-10">
-            <a href="#events" className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-500/25 hover:scale-105">
-              See Upcoming Events
-            </a>
-            <a href="/about" className="px-8 py-4 bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 rounded-xl font-bold text-lg transition-all hover:scale-105">
-              Read Our Story
-            </a>
+            <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white mb-6 leading-tight max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200 drop-shadow-lg">
+              Best Stranger Meetups in Pune <br className="hidden sm:block" />
+              <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-300 via-purple-300 to-pink-300">
+                Offline Weekly Events
+              </span>
+            </h1>
+            <p className="text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 drop-shadow-md">
+            Stranger Mingle is built to help people make real connections locally, not online. We create safe spaces where strangers meet and friendships begin through organized weekend events across Indian cities.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center animate-in fade-in slide-in-from-bottom-4 duration-500 delay-400">
+              <a href="#events" className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-500/25 hover:scale-105">
+                See Upcoming Events
+              </a>
+              <a href="/about" className="px-8 py-4 bg-white/95 backdrop-blur-sm hover:bg-white text-gray-900 border border-white/20 rounded-xl font-bold text-lg transition-all hover:scale-105">
+                Read Our Story
+              </a>
+            </div>
           </div>
         </section>
 
         {/* Upcoming Events Section */}
         <section id="events" className="w-full max-w-7xl mx-auto px-4 py-20 text-center">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
-            <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 text-center">Upcoming Meetups</h2>
-              <p className="text-gray-600 max-w-xl text-center">Join a group this weekend. First-timers welcome; come alone (most people do)!</p>
-            </div>
-            <a href="/events" className="hidden md:flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors">
-              View all events <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </a>
+          <div className="mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Upcoming Meetups</h2>
+            <p className="text-gray-600 max-w-xl mx-auto">Join a group this weekend. First-timers welcome; come alone (most people do)!</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
             {events.slice(0, 3).map((event) => (
               <EventCard key={event.id} event={event} />
             ))}
           </div>
 
-          <div className="mt-8 text-center md:hidden">
+          <div className="text-center">
             <a href="/events" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors">
               View all events <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>
@@ -243,6 +219,11 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* Recent Blog Posts */}
+        <section className="w-full max-w-7xl mx-auto px-4 py-20">
+          <RecentPosts limit={4} />
+        </section>
+
       </main>
 
       <script
@@ -253,11 +234,11 @@ export default async function Home() {
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Stranger Mingle",
-              "url": "https://strangermingle.com",
+              "url": "https://www.strangermingle.com",
               "description": "Make real friends in Pune through offline weekend events and meetups.",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://strangermingle.com/?q={search_term_string}",
+                "target": "https://www.strangermingle.com/?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             },
@@ -268,7 +249,7 @@ export default async function Home() {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://strangermingle.com"
+                "item": "https://www.strangermingle.com"
               }]
             }
           ]),

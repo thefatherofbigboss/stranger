@@ -409,8 +409,8 @@ export default function FAQs() {
                         "@context": "https://schema.org",
                         "@type": "Organization",
                         "name": "Stranger Mingle",
-                        "url": "https://strangermingle.com",
-                        "logo": "https://strangermingle.com/logo.png",
+                        "url": "https://www.strangermingle.com",
+                        "logo": "https://www.strangermingle.com/logo.png",
                         "description": "Stranger Mingle helps people make genuine friendships through organized weekend events across Indian cities. We create safe spaces for meaningful connections beyond class, caste, and background.",
                         "sameAs": [
                             "https://www.facebook.com/strangermingle",
@@ -439,13 +439,13 @@ export default function FAQs() {
                                 "@type": "ListItem",
                                 "position": 1,
                                 "name": "Home",
-                                "item": "https://strangermingle.com"
+                                "item": "https://www.strangermingle.com"
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 2,
                                 "name": "FAQs",
-                                "item": "https://strangermingle.com/faqs"
+                                "item": "https://www.strangermingle.com/faqs"
                             }
                         ]
                     })

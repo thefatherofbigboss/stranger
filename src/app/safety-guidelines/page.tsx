@@ -574,7 +574,7 @@ export default function SafetyGuidelines() {
                             "name": "Stranger Mingle",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "https://strangermingle.com/logo.png"
+                                "url": "https://www.strangermingle.com/logo.png"
                             }
                         },
                         "description": "Comprehensive safety guidelines for Stranger Mingle events and community interactions, covering personal safety, women's safety, prohibited behavior, emergency procedures, and reporting mechanisms."

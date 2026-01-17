@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Event, formatEventPrice, formatEventDate, formatEventTime, getSpotsLabel } from "@/lib/events";
 import Image from "next/image";
+import Link from "next/link";
 import PaymentModal from "./PaymentModal";
 import ContactOrganizerModal from "./ContactOrganizerModal";
 
@@ -169,7 +170,20 @@ export default function EventCard({ event }: EventCardProps) {
                     </div>
                 </div>
 
-                {/* Book Button */}
+                {/* Action Buttons */}
+                <div className="flex gap-3">
+                    <Link
+                        href={`/events/${event.slug || event.id}`}
+                        className="flex-1 py-3.5 rounded-xl font-semibold text-base transition-all duration-300 bg-white border-2 border-gray-300 text-gray-700 hover:border-blue-500 hover:text-blue-600 shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] text-center"
+                    >
+                        <span className="flex items-center justify-center gap-2">
+                            View Details
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </span>
+                    </Link>
                 <button 
                     onClick={() => {
                         if (isSoldOut) {
@@ -178,7 +192,7 @@ export default function EventCard({ event }: EventCardProps) {
                             setShowPaymentModal(true);
                         }
                     }}
-                    className={`w-full py-3.5 rounded-xl font-semibold text-base transition-all duration-300 ${
+                        className={`flex-1 py-3.5 rounded-xl font-semibold text-base transition-all duration-300 ${
                         isSoldOut 
                             ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
                             : 'bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]'
@@ -194,13 +208,14 @@ export default function EventCard({ event }: EventCardProps) {
                         </span>
                     ) : (
                         <span className="flex items-center justify-center gap-2">
-                            Book Your Spot
+                                Book
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                             </svg>
                         </span>
                     )}
                 </button>
+                </div>
             </div>
         </div>
 

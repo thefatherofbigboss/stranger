@@ -290,13 +290,13 @@ export default function About() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://strangermingle.com"
+                                    "item": "https://www.strangermingle.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "About",
-                                    "item": "https://strangermingle.com/about"
+                                    "item": "https://www.strangermingle.com/about"
                                 }
                             ]
                         },
