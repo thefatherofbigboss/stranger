@@ -28,9 +28,9 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
         ? event.discounted_price
         : event.regular_price;
 
-    // Load Razorpay script
+    // Load Razorpay script only for paid events
     useEffect(() => {
-        if (!isOpen || razorpayLoaded) return;
+        if (!isOpen || razorpayLoaded || price === 0) return;
 
         const script = document.createElement('script');
         script.src = 'https://checkout.razorpay.com/v1/checkout.js';
@@ -46,7 +46,7 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
                 document.body.removeChild(script);
             }
         };
-    }, [isOpen, razorpayLoaded]);
+    }, [isOpen, razorpayLoaded, price]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -80,7 +80,16 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
                 throw new Error(errorMessage);
             }
 
-            // Initialize Razorpay Checkout
+            // Handle free events - skip Razorpay payment
+            if (data.isFree) {
+                setLoading(false);
+                onClose();
+                alert('Booking confirmed successfully! Your spot has been reserved.');
+                window.location.reload();
+                return;
+            }
+
+            // Initialize Razorpay Checkout for paid events
             if (!window.Razorpay) {
                 throw new Error('Razorpay SDK not loaded');
             }
@@ -259,15 +268,19 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
                         <div className="pt-4">
                             <button
                                 type="submit"
-                                disabled={loading || !razorpayLoaded}
+                                disabled={loading || (price > 0 && !razorpayLoaded)}
                                 className="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold text-lg transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                {loading ? 'Processing...' : `Pay ${formatEventPrice(event)}`}
+                                {loading ? 'Processing...' : (price === 0 ? 'Confirm Booking' : `Pay ${formatEventPrice(event)}`)}
                             </button>
                         </div>
 
-                        <p className="text-xs text-gray-500 text-center">
-                            By proceeding, you agree to our Terms & Conditions and Privacy Policy
+                                <p className="text-xs text-gray-500 text-center">
+                            {price === 0 ? (
+                                'By confirming, you agree to our Terms & Conditions and Privacy Policy'
+                            ) : (
+                                'By proceeding, you agree to our Terms & Conditions and Privacy Policy'
+                            )}
                         </p>
                     </form>
                 </div>

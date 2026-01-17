@@ -128,9 +128,6 @@ export async function POST(request: NextRequest) {
             ? event.discounted_price
             : event.regular_price;
 
-        // Convert price to paise (Razorpay uses smallest currency unit)
-        const amountInPaise = Math.round(price * 100);
-
         // Create or update user profile
         const supabase = createServerClient();
         // For now, we'll use null for user_id since we're not implementing auth yet
@@ -149,7 +146,55 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Create Razorpay order
+        // Handle free events (price = 0) - skip Razorpay and directly confirm booking
+        if (price === 0) {
+            // Create payment_details record with status 'completed' for free events
+            const paymentDetail = await createBooking({
+                event_id: eventId,
+                user_id: null, // TODO: Get from auth session when implemented
+                guest_email: sanitizedEmail,
+                guest_phone: cleanedPhone,
+                spots_booked: 1, // Default to 1 spot per booking
+                amount_paid: 0,
+                payment_status: 'completed',
+                razorpay_order_id: null,
+                razorpay_payment_id: null,
+            });
+
+            if (!paymentDetail) {
+                console.error('Failed to create payment_detail record. Check server logs for details.');
+                return NextResponse.json(
+                    { 
+                        error: 'Failed to create booking record',
+                        hint: 'Check server logs for detailed error information. This might be due to RLS policies or database constraints.'
+                    },
+                    { status: 500 }
+                );
+            }
+
+            // Update event booked_spots for free events
+            const { error: updateError } = await supabase
+                .from('events')
+                .update({ booked_spots: event.booked_spots + 1 })
+                .eq('id', eventId);
+
+            if (updateError) {
+                console.error('Failed to update booked_spots:', updateError);
+                // Don't fail the booking if this fails, but log it
+            }
+
+            // Return success response for free events (no Razorpay needed)
+            return NextResponse.json({
+                isFree: true,
+                paymentDetailId: paymentDetail.id,
+                message: 'Booking confirmed successfully',
+            });
+        }
+
+        // Convert price to paise (Razorpay uses smallest currency unit)
+        const amountInPaise = Math.round(price * 100);
+
+        // Create Razorpay order for paid events
         let razorpay;
         try {
             razorpay = getRazorpayInstance();
