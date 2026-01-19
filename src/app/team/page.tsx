@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Twitter, Linkedin, Github, Mail, ShieldCheck, Zap, Heart, Palette, ShieldAlert } from 'lucide-react';
 
 const teamMembers = [
@@ -6,7 +7,7 @@ const teamMembers = [
         name: "Trishul D N",
         role: "Founder",
         image: "/images/team/trishul.png",
-        bio: "Trishul is on a mission to solve urban loneliness in India. With a background in psychology and business, he envisioned Stranger Mingle as a way to create meaningful human connections in our fast-paced cities.",
+        bio: "Trishul is on a mission to solve urban loneliness in India. With a background in Gender Trainer and AI startups, he envisioned Stranger Mingle as a way to create meaningful human connections in our fast-paced cities.",
         icon: <Zap className="w-5 h-5" />,
         color: "text-yellow-600",
         bgColor: "bg-yellow-50",
@@ -27,7 +28,7 @@ const teamMembers = [
         }
     },
     {
-        name: "Monali A C",
+        name: "Monali K",
         role: "Legal and Safety Lead",
         image: "/images/team/anjali.png",
         bio: "Monali oversees our verification processes and safety protocols to ensure Stranger Mingle remains a secure space.",
@@ -65,12 +66,14 @@ export default function TeamPage() {
                             className={`group relative bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ${index === 3 ? 'lg:col-start-1 lg:ml-auto md:max-w-md' : index === 4 ? 'lg:col-start-2 lg:mr-auto md:max-w-md' : ''}`}
                         >
                             {/* Member Image */}
-                            <div className="relative w-full aspect-square mb-8 rounded-2xl overflow-hidden shadow-inner">
+                            <div className="relative w-full aspect-square mb-8 rounded-2xl overflow-hidden shadow-inner bg-gray-100">
                                 <Image
                                     src={member.image}
                                     alt={member.name}
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    unoptimized={true}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             </div>
@@ -128,9 +131,20 @@ export default function TeamPage() {
                         <p className="text-blue-100 mb-10 text-lg max-w-2xl mx-auto italic">
                             &quot;The greatness of a community is most accurately measured by the compassionate actions of its members.&quot;
                         </p>
-                        <button className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition-colors shadow-lg shadow-blue-900/20">
-                            Apply to Join the Team
-                        </button>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                            <Link
+                                href="/blog"
+                                className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition-all hover:scale-105 shadow-lg shadow-blue-900/20 min-w-[200px]"
+                            >
+                                Read Blogs
+                            </Link>
+                            <Link
+                                href="/events"
+                                className="bg-blue-500 text-white border-2 border-white/20 px-8 py-4 rounded-full font-bold hover:bg-blue-400 transition-all hover:scale-105 shadow-lg shadow-blue-900/20 min-w-[200px]"
+                            >
+                                Join MeetUps
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

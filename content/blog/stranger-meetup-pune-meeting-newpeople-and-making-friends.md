@@ -270,7 +270,7 @@ Don't judge the entire scene based on one event. Try multiple organisers, differ
 
 ### Joining Stranger Mingle's Community
 
-Ready to experience Pune's most welcoming stranger meetup community? [Join Stranger Mingle today](/free-chat) and discover our next weekend event. Our carefully designed meetups help even the most socially anxious individuals feel comfortable, make genuine connections, and potentially find the friend group they've been seeking.
+Ready to experience Pune's most welcoming stranger meetup community? [Join Stranger Mingle today](/events) and discover our next weekend event. Our carefully designed meetups help even the most socially anxious individuals feel comfortable, make genuine connections, and potentially find the friend group they've been seeking.
 
 We start with optional anonymous chat opportunities where you can meet community members digitally before attending physical events. This staged approach reduces first-event anxiety while building anticipation for real-life meetings.
 
@@ -306,10 +306,10 @@ Living in Pune shouldn't mean sacrificing social connection for career advanceme
 
 Every weekend, hundreds of Pune residents transform from isolated individuals to part of vibrant communities through stranger meetups. They're not fundamentally different from you—they simply took the first step of attending an event despite nervousness and uncertainty.
 
-Ready to transform your social life in Pune? [Join Stranger Mingle's next weekend event](/free-chat) and experience firsthand why stranger meetups have become Pune's fastest-growing social phenomenon. From anonymous chat to lasting friendships—your journey begins with one decision to show up.
+Ready to transform your social life in Pune? [Join Stranger Mingle's next weekend event](/events) and experience firsthand why stranger meetups have become Pune's fastest-growing social phenomenon. From anonymous chat to lasting friendships—your journey begins with one decision to show up.
 
 ---
 
-*Don't spend another lonely weekend wondering where to meet people in Pune. [Register for our next stranger meetup](/free-chat) and discover the welcoming community waiting to become your Pune friend circle. Your next great friendship is just one meetup away.*
+*Don't spend another lonely weekend wondering where to meet people in Pune. [Register for our next stranger meetup](/events) and discover the welcoming community waiting to become your Pune friend circle. Your next great friendship is just one meetup away.*
 
 **Stop scrolling, start connecting—Pune's stranger meetup community awaits you this weekend!**

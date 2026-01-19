@@ -7,13 +7,13 @@ import RecentPosts from "@/components/RecentPosts";
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: "Find Local Groups, Events and Meetups | Stranger Mingle",
-  description: "Join India's most active community for making friends. Weekly offline events including treks, board game nights, chai circles, and heritage walks. No apps, just real connection.",
+  title: "Stranger Mingle — Meetups & Events in Pune, Mumbai, Bengaluru",
+  description: "Curated stranger meetups, friendship groups, and events in Pune, Mumbai & Bengaluru. Small groups. Safe. Book tickets now.",
 };
 
 export default async function Home() {
   const events = await getAllLiveEvents();
-  
+
   return (
     <div className="min-h-screen selection:bg-blue-500/30 selection:text-blue-200">
       {/* Background Gradient */}
@@ -44,13 +44,13 @@ export default async function Home() {
               👋 New in Pune? Alone this weekend?
             </span>
             <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white mb-6 leading-tight max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200 drop-shadow-lg">
-              Best Stranger Meetups in Pune <br className="hidden sm:block" />
+              Make new Friends <br />Instantly <br />
               <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-300 via-purple-300 to-pink-300">
-                Offline Weekly Events
+                Stranger Meetups & Events
               </span>
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 drop-shadow-md">
-            Stranger Mingle is built to help people make real connections locally, not online. We create safe spaces where strangers meet and friendships begin through organized weekend events across Indian cities.
+              Stranger Mingle is built to help people make real connections locally, not online. We create safe spaces where strangers meet and friendships begin through organized weekend events across Indian cities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center animate-in fade-in slide-in-from-bottom-4 duration-500 delay-400">
               <a href="#events" className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-500/25 hover:scale-105">
@@ -83,99 +83,99 @@ export default async function Home() {
           </div>
         </section>
 
-{/* Why Stranger Mingle Exists? */}
-<section className="w-full bg-gray-50 border-y border-gray-200 py-20">
-    <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 text-center">
-            Why Stranger Mingle Exists
-        </h2>
-        <p className="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-16">
-            We&apos;re solving a problem millions of Indians face: feeling lonely in a crowded city. Making friends after college shouldn&apos;t be this hard.
-        </p>
-        
-        <div className="grid md:grid-cols-3 gap-8 sm:gap-12 mb-16">
-            <div className="bg-white p-8 rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow">
-                <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-6">
-                    🏙️
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                    You&apos;re Not Alone in Feeling Alone
-                </h3>
-                <p className="text-gray-600 leading-relaxed text-center">
-                    Moved to a new city? Lost touch with college friends? Working from home with no social life? You&apos;re surrounded by millions, yet eating dinner alone. We get it—because we&apos;ve been there too.
-                </p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow">
-                <div className="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-3xl mb-6">
-                    🤝
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                    Real Connections, Not Online Chats
-                </h3>
-                <p className="text-gray-600 leading-relaxed text-center">
-                    Friendships happen when you&apos;re doing something together, not swiping through profiles. We create real spaces—chai circles, treks, game nights—where genuine bonds form naturally.
-                </p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow">
-                <div className="w-16 h-16 bg-pink-100 text-pink-600 rounded-2xl flex items-center justify-center text-3xl mb-6">
-                    🛡️
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                    Safe Spaces for Everyone
-                </h3>
-                <p className="text-gray-600 leading-relaxed text-center">
-                    We don&apos;t judge by caste, class, colour, or background. Zero tolerance for harassment. Verified members only. Small groups where everyone matters. This is where India makes friends the right way.
-                </p>
-            </div>
-        </div>
+        {/* Why Stranger Mingle Exists? */}
+        <section className="w-full bg-gray-50 border-y border-gray-200 py-20">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 text-center">
+              Why Stranger Mingle Exists
+            </h2>
+            <p className="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-16">
+              We&apos;re solving a problem millions of Indians face: feeling lonely in a crowded city. Making friends after college shouldn&apos;t be this hard.
+            </p>
 
-        {/* How It Works */}
-        <div className="bg-linear-to-br from-blue-50 to-purple-50 rounded-2xl p-8 sm:p-12 border border-blue-100">
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">
-                How It Works
-            </h3>
-            <div className="grid md:grid-cols-3 gap-8">
-                <div className="text-center">
-                    <div className="w-16 h-16 bg-white text-blue-600 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-sm">
-                        1
-                    </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-2">
-                        Pick Your Event
-                    </h4>
-                    <p className="text-gray-700 leading-relaxed">
-                        Browse weekend events—casual meetups, treks, cultural walks. Choose what excites you. Events are priced fairly to keep things sustainable.
-                    </p>
+            <div className="grid md:grid-cols-3 gap-8 sm:gap-12 mb-16">
+              <div className="bg-white p-8 rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                  🏙️
                 </div>
-                
-                <div className="text-center">
-                    <div className="w-16 h-16 bg-white text-purple-600 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-sm">
-                        2
-                    </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-2">
-                        Just Show Up
-                    </h4>
-                    <p className="text-gray-700 leading-relaxed">
-                        Come alone—80% of people do. We handle the awkward part with structured ice-breakers. Small groups (25-30 people) mean real conversations.
-                    </p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
+                  You&apos;re Not Alone in Feeling Alone
+                </h3>
+                <p className="text-gray-600 leading-relaxed text-center">
+                  Moved to a new city? Lost touch with college friends? Working from home with no social life? You&apos;re surrounded by millions, yet eating dinner alone. We get it—because we&apos;ve been there too.
+                </p>
+              </div>
+
+              <div className="bg-white p-8 rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                  🤝
                 </div>
-                
-                <div className="text-center">
-                    <div className="w-16 h-16 bg-white text-pink-600 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-sm">
-                        3
-                    </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-2">
-                        Build Real Friendships
-                    </h4>
-                    <p className="text-gray-700 leading-relaxed">
-                        Exchange numbers. Make plans. Show up to the next event. Friendships take time, but they start with showing up once.
-                    </p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
+                  Real Connections, Not Online Chats
+                </h3>
+                <p className="text-gray-600 leading-relaxed text-center">
+                  Friendships happen when you&apos;re doing something together, not swiping through profiles. We create real spaces—chai circles, treks, game nights—where genuine bonds form naturally.
+                </p>
+              </div>
+
+              <div className="bg-white p-8 rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-pink-100 text-pink-600 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                  🛡️
                 </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
+                  Safe Spaces for Everyone
+                </h3>
+                <p className="text-gray-600 leading-relaxed text-center">
+                  We don&apos;t judge by caste, class, colour, or background. Zero tolerance for harassment. Verified members only. Small groups where everyone matters. This is where India makes friends the right way.
+                </p>
+              </div>
             </div>
-        </div>
-    </div>
-</section>
+
+            {/* How It Works */}
+            <div className="bg-linear-to-br from-blue-50 to-purple-50 rounded-2xl p-8 sm:p-12 border border-blue-100">
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">
+                How It Works
+              </h3>
+              <div className="grid md:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-white text-blue-600 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-sm">
+                    1
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    Pick Your Event
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed">
+                    Browse weekend events—casual meetups, treks, cultural walks. Choose what excites you. Events are priced fairly to keep things sustainable.
+                  </p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-white text-purple-600 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-sm">
+                    2
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    Just Show Up
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed">
+                    Come alone—80% of people do. We handle the awkward part with structured ice-breakers. Small groups (25-30 people) mean real conversations.
+                  </p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-white text-pink-600 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-sm">
+                    3
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    Build Real Friendships
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed">
+                    Exchange numbers. Make plans. Show up to the next event. Friendships take time, but they start with showing up once.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Testimonial / Social Proof */}
         <section className="w-full max-w-5xl mx-auto px-4 py-20 text-center">

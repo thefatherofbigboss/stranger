@@ -31,7 +31,7 @@ export default function Navbar() {
                             unoptimized
                         />
                     </Link>
-                    
+
                     {/* Desktop Menu */}
                     <div className="flex items-center gap-4 sm:gap-6 text-sm font-medium text-gray-600">
                         <Link href="/pune" className="hover:text-black transition-colors hidden md:block">
@@ -39,9 +39,6 @@ export default function Navbar() {
                         </Link>
                         <Link href="/mumbai" className="hover:text-black transition-colors hidden md:block">
                             Mumbai
-                        </Link>
-                        <Link href="/delhi" className="hover:text-black transition-colors hidden md:block">
-                            Delhi
                         </Link>
                         <Link href="/bangalore" className="hover:text-black transition-colors hidden md:block">
                             Bangalore
@@ -68,19 +65,16 @@ export default function Navbar() {
                         aria-expanded={isMobileMenuOpen}
                     >
                         <span
-                            className={`w-6 h-0.5 bg-gray-900 rounded-full transition-all duration-300 ${
-                                isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
-                            }`}
+                            className={`w-6 h-0.5 bg-gray-900 rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
+                                }`}
                         />
                         <span
-                            className={`w-6 h-0.5 bg-gray-900 rounded-full transition-all duration-300 ${
-                                isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
-                            }`}
+                            className={`w-6 h-0.5 bg-gray-900 rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
+                                }`}
                         />
                         <span
-                            className={`w-6 h-0.5 bg-gray-900 rounded-full transition-all duration-300 ${
-                                isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
-                            }`}
+                            className={`w-6 h-0.5 bg-gray-900 rounded-full transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
+                                }`}
                         />
                     </button>
                 </nav>
@@ -97,9 +91,8 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             <div
-                className={`fixed right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl z-[999999] sm:hidden transform transition-transform duration-300 ease-in-out overflow-hidden ${
-                    isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-                }`}
+                className={`fixed right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl z-[999999] sm:hidden transform transition-transform duration-300 ease-in-out overflow-hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+                    }`}
                 style={{ top: '73px' }}
             >
                 <div className="flex flex-col h-full py-6 px-6 overflow-y-auto">

@@ -41,6 +41,7 @@ export default function AuthorsPage() {
                                             alt={author.name}
                                             fill
                                             className="object-cover"
+                                            unoptimized={true}
                                         />
                                     </div>
                                     <h2 className="text-2xl font-bold text-gray-900 mb-2">

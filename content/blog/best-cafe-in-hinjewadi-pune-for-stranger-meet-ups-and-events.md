@@ -152,7 +152,7 @@ We maintain a regular schedule so that even new members of the community can pla
 
 ### How to Register and What to Expect
 
-Joining Stranger Mingle events is straightforward. Simply [visit our platform](/free-chat) to see upcoming events, register your interest, and receive details about the specific weekend's theme and activities. Registration helps us plan appropriate space and activities based on expected attendance.
+Joining Stranger Mingle events is straightforward. Simply [visit our platform](/events) to see upcoming events, register your interest, and receive details about the specific weekend's theme and activities. Registration helps us plan appropriate space and activities based on expected attendance.
 
 First-time attendees often worry about showing up alone to meet strangers. Our facilitators specifically watch for new faces and ensure everyone gets properly introduced and included in conversations. The structured icebreakers at the beginning of each event make jumping into the social scene much easier than you might expect.
 
@@ -240,10 +240,10 @@ Ready to break free from social isolation and experience Hinjewadi's most vibran
 
 Whether you're new to the city, looking to expand your social circle, interested in professional networking, or simply tired of spending weekends alone, Cafe Caspian's welcoming atmosphere and our structured community events provide the perfect solution.
 
-[Register for upcoming events](/free-chat) and become part of Hinjewadi's fastest-growing social community. From strangers to friends—it all starts with showing up at Cafe Caspian this weekend.
+[Register for upcoming events](/events) and become part of Hinjewadi's fastest-growing social community. From strangers to friends—it all starts with showing up at Cafe Caspian this weekend.
 
 ---
 
-*Don't spend another weekend isolated. [Join Stranger Mingle's next event](/free-chat) at Cafe Caspian and experience why it's rated the best cafe in Hinjewadi for social meetups and professional networking. Your next great friendship is just one meetup away.*
+*Don't spend another weekend isolated. [Join Stranger Mingle's next event](/events) at Cafe Caspian and experience why it's rated the best cafe in Hinjewadi for social meetups and professional networking. Your next great friendship is just one meetup away.*
 
 **Cafe Caspian awaits—where strangers become friends over great food, engaging conversations, and genuine connections every weekend!**

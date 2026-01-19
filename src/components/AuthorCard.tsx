@@ -22,6 +22,7 @@ export default function AuthorCard({ authorName }: AuthorCardProps) {
                         alt={author.name}
                         fill
                         className="object-cover"
+                        unoptimized={true}
                     />
                 </div>
                 <div className="flex-1">
