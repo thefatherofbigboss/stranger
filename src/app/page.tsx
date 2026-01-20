@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { getAllLiveEvents } from "@/lib/events";
 import EventCard from "@/components/EventCard";
 import RecentPosts from "@/components/RecentPosts";
@@ -77,9 +78,9 @@ export default async function Home() {
           </div>
 
           <div className="text-center">
-            <a href="/events" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors">
+            <Link href="/events" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors">
               View all events <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </a>
+            </Link>
           </div>
         </section>
 
@@ -235,7 +236,7 @@ export default async function Home() {
               "@type": "WebSite",
               "name": "Stranger Mingle",
               "url": "https://www.strangermingle.com",
-              "description": "Make real friends in Pune through offline weekend events and meetups.",
+              "description": "Make new friends through Stranger Meetups and local events.",
               "potentialAction": {
                 "@type": "SearchAction",
                 "target": "https://www.strangermingle.com/?q={search_term_string}",

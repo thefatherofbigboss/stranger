@@ -5,8 +5,8 @@ import EventCard from "@/components/EventCard";
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-    title: "Stranger Meetup Events in Pune, Mumbai, Delhi, Bangalore | Weekend Social Networking & Friendship Meetups 2026",
-    description: "Join 10,000+ professionals at stranger meetup events across India. Browse 100+ monthly social mixers, trekking groups, networking events & workshops in Pune, Mumbai, Delhi, Bangalore. Make genuine friends through safe, verified offline meetups every weekend.",
+    title: "Stranger Meetup Events in Pune, Mumbai & Bengaluru | Make Real Friends Offline",
+    description: "Community-driven, curated stranger meetups for real conversations and meaningful friendships. Safe, verified offline events every weekend. No dating. No selling.",
     keywords: "stranger meetup events India, social meetups Pune, networking events Mumbai, make friends Delhi, weekend events Bangalore, stranger networking India, offline social events, friendship meetups, young professionals events, singles social events India, meet new people events, IT professionals meetups, community events India",
     authors: [{ name: "Stranger Mingle Team" }],
     creator: "Stranger Mingle",
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
     classification: "Events and Community Networking",
     
     openGraph: {
-        title: "Stranger Meetup Events in Pune, Mumbai, Delhi, Bangalore | Make Real Friends Offline",
-        description: "Join India's largest stranger meetup community with 100+ monthly events including social mixers, treks, workshops & networking sessions. Safe, verified events for professionals looking to make genuine friends across major cities.",
+        title: "Stranger Meetup Events in Pune, Mumbai & Bengaluru | Make Real Friends Offline",
+        description: "Community-driven, curated stranger meetups for real conversations and meaningful friendships. Safe, verified offline events every weekend. No dating. No selling.",
         type: 'website',
         url: 'https://www.strangermingle.com/events',
         siteName: 'Stranger Mingle',
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
     
     twitter: {
         card: 'summary_large_image',
-        title: "Stranger Meetup Events: Social Mixers, Treks & Networking | Pune, Mumbai, Delhi, Bangalore",
-        description: "Browse 100+ monthly stranger meetup events across India. Join thousands making genuine friends through organised social events, workshops & weekend activities. Safe & verified community for professionals.",
+        title: "Stranger Meetup Events: Social Mixers, Treks & Networking | Pune, Mumbai & Bengaluru",
+        description: "Community-driven, curated stranger meetups for real conversations and meaningful friendships. Safe, verified offline events every weekend. No dating. No selling.",
         images: ['https://www.strangermingle.com/twitter-events-card.jpg'],
         site: '@StrangerMingle',
         creator: '@StrangerMingle',
@@ -67,9 +67,9 @@ export default async function EventsPage() {
     const events = await getAllLiveEvents();
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50">
+        <div className="min-h-screen bg-linear-to-b from-gray-50 via-white to-gray-50">
             {/* Page Header */}
-            <section className="relative w-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 pt-32 pb-16 px-4 overflow-hidden">
+            <section className="relative w-full bg-linear-to-br from-blue-600 via-purple-600 to-pink-600 pt-32 pb-16 px-4 overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_50%)]"></div>

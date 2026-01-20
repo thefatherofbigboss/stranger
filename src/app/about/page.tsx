@@ -5,10 +5,10 @@ export default function About() {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <div className="relative pt-32 pb-20 sm:pt-40 sm:pb-24 overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50">
+            <div className="relative pt-32 pb-20 sm:pt-40 sm:pb-24 overflow-hidden bg-linear-to-br from-blue-50 to-purple-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                     <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-gray-900 mb-8">
-                        Building Real <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Friendships</span><br className="hidden md:block" /> Across India
+                        Building Real <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600">Friendships</span><br className="hidden md:block" /> Across India
                     </h1>
                     <p className="mt-4 max-w-2xl mx-auto text-xl md:text-2xl text-gray-600 leading-relaxed">
                         No swipes. No algorithms. Just safe structured events where you can show up, be yourself, and make friends IRL.
@@ -247,7 +247,7 @@ export default function About() {
                 </div>
 
                 {/* Who Joins Section */}
-                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 md:p-12 text-center">
+                <div className="bg-linear-to-br from-blue-50 to-purple-50 rounded-3xl p-8 md:p-12 text-center">
                     <h2 className="text-3xl font-bold text-gray-900 mb-6">Who Joins Stranger Mingle?</h2>
                     <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
                         People new to the city. Introverts looking for a safe start. Professionals tired of the grind. Everyone who believes that life is better with friends. It doesn&apos;t matter who you are or where you come from – if you&apos;re kind and open to connection, you belong here.

@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: 'https://www.strangermingle.com',
     siteName: 'Stranger Mingle',
-    title: 'Stranger Mingle - Local Events & Meetups for Making Friends',
-    description: "Join India's most active community for making friends. Weekly offline events including treks, board game nights, chai circles, and heritage walks.",
+    title: 'Stranger Mingle - Stranger Meetups & Local Events for Making new Friends',
+    description: "Join India's most active community for stranger meetups and local events. Make new friends instantly.",
     images: [
       {
         url: '/logo.png',
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Stranger Mingle - Local Events & Meetups for Making Friends',
-    description: "Join India's most active community for making friends. Weekly offline events.",
+    title: 'Stranger Mingle - Stranger Meetups & Local Events for Making new Friends',
+    description: "Join India's most active community for Stranger Meetups to make new friends instantly.",
     images: ['/logo.png'],
     creator: '@strangermingle',
   },

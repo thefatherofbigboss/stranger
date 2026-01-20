@@ -46,9 +46,9 @@ export default function TeamPage() {
         <div className="min-h-screen bg-gray-50/50">
             {/* Hero Section */}
             <div className="relative pt-32 pb-20 overflow-hidden">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-b from-blue-50/50 to-transparent -z-10"></div>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-linear-to-b from-blue-50/50 to-transparent -z-10"></div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
+                    <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 bg-clip-text text-transparent bg-linear-to-r from-blue-600 via-purple-600 to-pink-600">
                         Meet the Dream Team
                     </h1>
                     <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -63,7 +63,7 @@ export default function TeamPage() {
                     {teamMembers.map((member, index) => (
                         <div
                             key={member.name}
-                            className={`group relative bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ${index === 3 ? 'lg:col-start-1 lg:ml-auto md:max-w-md' : index === 4 ? 'lg:col-start-2 lg:mr-auto md:max-w-md' : ''}`}
+                            className={`group relative bg-white rounded-4xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ${index === 3 ? 'lg:col-start-1 lg:ml-auto md:max-w-md' : index === 4 ? 'lg:col-start-2 lg:mr-auto md:max-w-md' : ''}`}
                         >
                             {/* Member Image */}
                             <div className="relative w-full aspect-square mb-8 rounded-2xl overflow-hidden shadow-inner bg-gray-100">
@@ -75,7 +75,7 @@ export default function TeamPage() {
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     unoptimized={true}
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="absolute inset-0 bg-linear-to-t from-gray-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             </div>
 
                             {/* Info */}
@@ -124,7 +124,7 @@ export default function TeamPage() {
 
             {/* CTA Section */}
             <div className="max-w-7xl mx-auto px-4 pb-32 sm:px-6 lg:px-8">
-                <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[3rem] p-12 text-center text-white relative overflow-hidden shadow-2xl">
+                <div className="bg-linear-to-br from-blue-600 to-indigo-700 rounded-4xl p-12 text-center text-white relative overflow-hidden shadow-2xl">
                     <div className="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl"></div>
                     <div className="relative z-10">
                         <h2 className="text-3xl md:text-4xl font-bold mb-6 italic">Join us on our journey to connect people.</h2>

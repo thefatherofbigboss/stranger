@@ -19,6 +19,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         };
     }
 
+    // Use slug in URL if available, fallback to id for backward compatibility
+    const eventUrlSlug = event.slug || event.id;
+    const canonicalUrl = `https://www.strangermingle.com/events/${eventUrlSlug}`;
+
     return {
         title: `${event.event_name} | Stranger Mingle Events`,
         description: event.description || `Join us for ${event.event_name} on ${event.start_date} at ${event.short_address}. ${event.available_seats - event.booked_spots} spots available.`,
@@ -27,12 +31,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             description: event.description || `Join us for ${event.event_name} on ${event.start_date} at ${event.short_address}.`,
             images: event.image_url ? [event.image_url] : [],
             type: 'website',
+            url: canonicalUrl,
         },
         twitter: {
             card: 'summary_large_image',
             title: event.event_name,
             description: event.description || `Join us for ${event.event_name} on ${event.start_date} at ${event.short_address}.`,
             images: event.image_url ? [event.image_url] : [],
+        },
+        alternates: {
+            canonical: canonicalUrl,
         },
     };
 }
@@ -93,7 +101,8 @@ export default async function EventDetails({ params }: Props) {
                             "@type": "Organization",
                             "name": event.organizer_name,
                             "email": event.organizer_email || undefined,
-                            "telephone": event.organizer_phone || undefined
+                            "telephone": event.organizer_phone || undefined,
+                            "url": "https://www.strangermingle.com"
                         } : {
                             "@type": "Organization",
                             "name": "Stranger Mingle",

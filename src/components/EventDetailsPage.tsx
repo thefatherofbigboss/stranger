@@ -60,7 +60,7 @@ export default function EventDetailsPage({ event }: EventDetailsPageProps) {
                         {/* Main Content */}
                         <div className="flex-1 lg:max-w-4xl">
                             {/* Hero Section with Image */}
-                            <div className={`relative w-full h-96 rounded-2xl overflow-hidden mb-8 shadow-lg ${!event.image_url ? `bg-gradient-to-br ${gradient}` : ''}`}>
+                            <div className={`relative w-full h-96 rounded-2xl overflow-hidden mb-8 shadow-lg ${!event.image_url ? `bg-linear-to-br ${gradient}` : ''}`}>
                                 {event.image_url ? (
                                     <Image
                                         src={event.image_url}
@@ -71,7 +71,7 @@ export default function EventDetailsPage({ event }: EventDetailsPageProps) {
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 900px"
                                     />
                                 ) : (
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-80`} />
+                                    <div className={`absolute inset-0 bg-linear-to-br ${gradient} opacity-80`} />
                                 )}
                                 
                                 {/* Badges */}
@@ -360,7 +360,7 @@ export default function EventDetailsPage({ event }: EventDetailsPageProps) {
                                     className={`w-full py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
                                         isSoldOut
                                             ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                                            : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]'
+                                            : 'bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]'
                                     }`}
                                 >
                                     {isSoldOut ? (
@@ -381,7 +381,7 @@ export default function EventDetailsPage({ event }: EventDetailsPageProps) {
                                 </button>
 
                                 <p className="text-xs text-gray-500 text-center mt-4">
-                                    Secure payment powered by Razorpay
+                                    Secure payment powered by Razorpay.
                                 </p>
                             </div>
                         </div>
