@@ -30,6 +30,8 @@ export interface Event {
     slug: string | null;
     created_at: string;
     updated_at: string;
+    meeting_link: string | null;
+    ticket_sale_start: string | null;
 }
 
 // PaymentDetail interface (renamed from Booking)
