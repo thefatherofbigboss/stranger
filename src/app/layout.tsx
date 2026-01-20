@@ -39,10 +39,10 @@ export const metadata: Metadata = {
     description: "Join India's most active community for stranger meetups and local events. Make new friends instantly.",
     images: [
       {
-        url: '/logo.png',
+        url: "/images/og-images/og-image-default.webp",
         width: 1200,
         height: 630,
-        alt: 'Stranger Mingle Logo',
+        alt: "Stranger Mingle - Social Meetups & Events",
       },
     ],
   },
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Stranger Mingle - Stranger Meetups & Local Events for Making new Friends',
     description: "Join India's most active community for Stranger Meetups to make new friends instantly.",
-    images: ['/logo.png'],
+    images: ["/images/og-images/og-image-default.webp"],
     creator: '@strangermingle',
   },
   robots: {
