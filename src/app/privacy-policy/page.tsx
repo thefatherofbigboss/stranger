@@ -514,7 +514,7 @@ export default function PrivacyPolicy() {
                                     If you have questions, concerns, or requests regarding this Privacy Policy or how we handle your personal information, please contact us:
                                 </p>
                                 <div className="space-y-2 ml-4">
-                                    <p className="text-blue-50"><strong>Email:</strong> privacy@strangermingle.com</p>
+                                    <p className="text-blue-50"><strong>Email:</strong> strangermingleteam@gmail.com</p>
                                     <p className="text-blue-50"><strong>Support:</strong> Through our official website contact form</p>
                                     <p className="text-blue-50"><strong>Response Time:</strong> We aim to respond within 48-72 hours</p>
                                 </div>

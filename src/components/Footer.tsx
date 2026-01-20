@@ -56,6 +56,17 @@ export default function Footer() {
                         </Link>
                     </nav>
                 </div>
+
+                {/* Copyright and Image Attribution - Center Aligned */}
+                <div className="mt-8 pt-6 border-t border-gray-200 text-center">
+                    <p className="text-sm text-gray-600 mb-2">
+                        © {currentYear} Stranger Mingle. All rights reserved.
+                    </p>
+                    <p className="text-xs text-gray-500 max-w-3xl mx-auto">
+                        Images and videos used are from Stranger Mingle events, Pexels, and Freepik.
+                        All copyrights belong to their respective owners.
+                    </p>
+                </div>
             </div>
         </footer>
     );

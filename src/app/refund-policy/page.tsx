@@ -239,7 +239,7 @@ export default function RefundPolicy() {
                                         <h3 className="text-lg font-bold text-gray-900 mb-2">How to Request a Transfer</h3>
                                         <p className="leading-relaxed mb-2 text-gray-600">Contact us via:</p>
                                         <ul className="space-y-1 text-gray-600 text-sm ml-6 list-disc">
-                                            <li>Email: support@strangermingle.com</li>
+                                            <li>Email: strangermingleteam@gmail.com</li>
                                             <li>WhatsApp: [Your contact number]</li>
                                             <li>Website contact form</li>
                                         </ul>
@@ -408,7 +408,7 @@ export default function RefundPolicy() {
                                     <div>
                                         <h3 className="text-lg font-bold text-gray-900 mb-2">Contact Channels</h3>
                                         <div className="bg-white p-4 rounded-xl border border-gray-200">
-                                            <p className="mb-2 text-gray-700"><strong>Email:</strong> support@strangermingle.com</p>
+                                            <p className="mb-2 text-gray-700"><strong>Email:</strong> strangermingleteam@gmail.com</p>
                                             <p className="mb-2 text-gray-700"><strong>WhatsApp:</strong> [Your contact number]</p>
                                             <p className="mb-2 text-gray-700"><strong>Website:</strong> Contact form on strangermingle.com</p>
                                             <p className="text-sm text-gray-500 mt-3">
@@ -433,7 +433,7 @@ export default function RefundPolicy() {
                                     If you believe a refund decision was made in error or you&apos;re unsatisfied with the resolution:
                                 </p>
                                 <ol className="list-decimal ml-6 space-y-2 text-gray-600 text-sm">
-                                    <li><strong>Contact us directly first</strong> - Email support@strangermingle.com with &quot;Refund Dispute&quot; in the subject line</li>
+                                    <li><strong>Contact us directly first</strong> - Email strangermingleteam@gmail.com with &quot;Refund Dispute&quot; in the subject line</li>
                                     <li><strong>Provide all relevant information</strong> - Include booking details, original cancellation request, and reason for dispute</li>
                                     <li><strong>We&apos;ll review within 3-5 business days</strong> - A senior team member will review your case</li>
                                     <li><strong>Final decision will be communicated</strong> - All refund dispute decisions are final</li>

@@ -8,7 +8,7 @@ export interface Author {
 export const authors: Record<string, Author> = {
     "Trishul D N": {
         name: "Trishul D N",
-        bio: "Trishul is on a mission to solve urban loneliness in India. With a background in psychology and business, he envisioned Stranger Mingle as a way to create meaningful human connections in our fast-paced cities.",
+        bio: "Trishul is on a mission to solve urban loneliness in India. With a background in NGO, Gender Trainer and AI business, he envisioned Stranger Mingle as a way to create meaningful human connections in our fast-paced cities.",
         image: "/images/team/trishul.png",
         slug: "trishul-d-n"
     },

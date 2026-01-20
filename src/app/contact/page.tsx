@@ -76,8 +76,8 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-gray-900 mb-1">Email Us</h3>
-                                    <a href="mailto:support@strangermingle.com" className="text-blue-600 hover:text-blue-700">
-                                        support@strangermingle.com
+                                    <a href="mailto:strangermingleteam@gmail.com" className="text-blue-600 hover:text-blue-700">
+                                        strangermingleteam@gmail.com
                                     </a>
                                 </div>
                             </div>
@@ -176,11 +176,10 @@ export default function Contact() {
                             </div>
 
                             {statusMessage && (
-                                <div className={`p-4 rounded-xl ${
-                                    status === 'success' 
-                                        ? 'bg-green-50 text-green-700 border border-green-200' 
+                                <div className={`p-4 rounded-xl ${status === 'success'
+                                        ? 'bg-green-50 text-green-700 border border-green-200'
                                         : 'bg-red-50 text-red-700 border border-red-200'
-                                }`}>
+                                    }`}>
                                     {statusMessage}
                                 </div>
                             )}

@@ -6,7 +6,7 @@ author: Trishul D N
 date: 2026-01-19
 readTime: 10 min
 category: Psychology & Relationships
-image: https://res.cloudinary.com/dt3rse8bg/image/upload/v1768619953/group-young-successful-people-vacation-friends-enjoying-game-lake-positive-emotions_hycidp.jpg
+image: "https://res.cloudinary.com/dt3rse8bg/image/upload/v1768885568/pexels-a-frame-in-motion-132129244-11347309_ctvwek.jpg"
 featured: false
 tags: [Friendship, Human Psychology, Social Bonding, Meetups, Indian Culture, Mumbai]
 keywords: [psychology of friendship, stranger to friend, social bonding, making friends in India, human connection]

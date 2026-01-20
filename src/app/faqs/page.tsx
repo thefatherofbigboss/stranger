@@ -130,7 +130,7 @@ export default function FAQs() {
             questions: [
                 {
                     q: "How do I update my account information?",
-                    a: "Log into your account, go to Settings or Profile, and update your information. If you need help, contact our support team at support@strangermingle.com."
+                    a: "Log into your account, go to Settings or Profile, and update your information. If you need help, contact our support team at strangermingleteam@gmail.com."
                 },
                 {
                     q: "I forgot my password. How do I reset it?",
@@ -138,11 +138,11 @@ export default function FAQs() {
                 },
                 {
                     q: "Can I delete my account?",
-                    a: "Yes. Contact us at support@strangermingle.com requesting account deletion. We'll process your request within 7 business days. Note that some information may be retained for legal or accounting purposes (like transaction records)."
+                    a: "Yes. Contact us at strangermingleteam@gmail.com requesting account deletion. We'll process your request within 7 business days. Note that some information may be retained for legal or accounting purposes (like transaction records)."
                 },
                 {
                     q: "Why was my account suspended or banned?",
-                    a: "Accounts are suspended or banned for violating our Terms of Service or Community Guidelines – harassment, discrimination, repeated no-shows, fake information, or inappropriate behaviour. If you believe this was an error, contact us at support@strangermingle.com with your account details."
+                    a: "Accounts are suspended or banned for violating our Terms of Service or Community Guidelines – harassment, discrimination, repeated no-shows, fake information, or inappropriate behaviour. If you believe this was an error, contact us at strangermingleteam@gmail.com with your account details."
                 },
                 {
                     q: "How do I unsubscribe from emails?",
@@ -176,7 +176,7 @@ export default function FAQs() {
             questions: [
                 {
                     q: "Can I organise Stranger Mingle events in my city?",
-                    a: "Yes! We encourage people who want to take initiative and bring Stranger Mingle to their cities. This is done under strict rules and regulations to maintain our quality and safety standards. Contact us at partnerships@strangermingle.com if you're interested in organizing events in your city."
+                    a: "Yes! We encourage people who want to take initiative and bring Stranger Mingle to their cities. This is done under strict rules and regulations to maintain our quality and safety standards. Contact us at strangermingleteam@gmail.com if you're interested in organizing events in your city."
                 },
                 {
                     q: "What support do event organizers get?",
@@ -193,11 +193,11 @@ export default function FAQs() {
             questions: [
                 {
                     q: "I registered for an event but didn't receive confirmation email",
-                    a: "Check your spam/junk folder first. If you still don't see it, contact us at support@strangermingle.com with your registered email and event name. We'll resend the confirmation and verify your registration."
+                    a: "Check your spam/junk folder first. If you still don't see it, contact us at strangermingleteam@gmail.com with your registered email and event name. We'll resend the confirmation and verify your registration."
                 },
                 {
                     q: "The payment went through but registration shows as pending",
-                    a: "Sometimes payment confirmations take a few minutes to process. Wait 10-15 minutes and refresh your account page. If it's still pending after 30 minutes, contact support@strangermingle.com with your payment reference number."
+                    a: "Sometimes payment confirmations take a few minutes to process. Wait 10-15 minutes and refresh your account page. If it's still pending after 30 minutes, contact strangermingleteam@gmail.com with your payment reference number."
                 },
                 {
                     q: "I can't find events in my city",
@@ -291,7 +291,7 @@ export default function FAQs() {
                     <h3 className="text-xl font-bold text-gray-900 mb-4">Jump to Popular Topics:</h3>
                     <div className="flex flex-wrap gap-3">
                         {faqs.map((category, idx) => (
-                            <a 
+                            <a
                                 key={idx}
                                 href={`#${category.category.toLowerCase().replace(/\s+/g, '-')}`}
                                 className="px-4 py-2 bg-white border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors text-sm font-medium text-gray-700 hover:text-blue-600"
@@ -310,16 +310,16 @@ export default function FAQs() {
                         </h2>
                         <div className="space-y-4">
                             {category.questions.map((faq, faqIndex) => (
-                                <details 
-                                    key={faqIndex} 
+                                <details
+                                    key={faqIndex}
                                     className="bg-gray-50 border border-gray-200 rounded-xl p-6 group hover:bg-white transition-colors shadow-sm hover:shadow-md"
                                 >
                                     <summary className="font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between">
                                         <span className="text-lg pr-4">{faq.q}</span>
-                                        <svg 
-                                            className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform shrink-0" 
-                                            fill="none" 
-                                            stroke="currentColor" 
+                                        <svg
+                                            className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform shrink-0"
+                                            fill="none"
+                                            stroke="currentColor"
                                             viewBox="0 0 24 24"
                                         >
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
@@ -341,14 +341,14 @@ export default function FAQs() {
                         Can&apos;t find the answer you&apos;re looking for? Our support team is here to help. Reach out and we&apos;ll get back to you within 24-48 hours.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a 
-                            href="mailto:support@strangermingle.com" 
+                        <a
+                            href="mailto:strangermingleteam@gmail.com"
                             className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                         >
                             Email Support
                         </a>
-                        <a 
-                            href="/contact" 
+                        <a
+                            href="/contact"
                             className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors"
                         >
                             Contact Form
@@ -387,7 +387,7 @@ export default function FAQs() {
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "FAQPage",
-                        "mainEntity": faqs.flatMap(category => 
+                        "mainEntity": faqs.flatMap(category =>
                             category.questions.map(faq => ({
                                 "@type": "Question",
                                 "name": faq.q,
@@ -420,7 +420,7 @@ export default function FAQs() {
                         "contactPoint": {
                             "@type": "ContactPoint",
                             "contactType": "Customer Support",
-                            "email": "support@strangermingle.com",
+                            "email": "strangermingleteam@gmail.com",
                             "availableLanguage": ["English", "Hindi"]
                         }
                     })

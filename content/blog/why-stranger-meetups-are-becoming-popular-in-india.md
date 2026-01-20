@@ -6,7 +6,7 @@ author: "Trishul D N"
 date: 2026-01-19
 readTime: "9 min read"
 category: "Social Trends"
-image: "https://res.cloudinary.com/dt3rse8bg/image/upload/v1768619953/group-young-successful-people-vacation-friends-enjoying-game-lake-positive-emotions_hycidp.jpg"
+image: "https://res.cloudinary.com/dt3rse8bg/image/upload/v1768885579/pexels-helenalopes-4034147_qchgpc.jpg"
 featured: false
 tags: ["stranger meetups", "social connection", "urban India", "community building", "dating culture", "mental health"]
 keywords: ["stranger meetups India", "meet new people India", "social events India", "urban loneliness India", "community events"]

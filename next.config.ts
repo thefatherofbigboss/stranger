@@ -18,6 +18,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/sitemap-events.xml',
+        destination: '/sitemap-events',
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -531,7 +531,7 @@ export default function Terms() {
                                     If you have questions about these Terms of Service, please contact us:
                                 </p>
                                 <div className="space-y-2 ml-4 text-blue-50">
-                                    <p><strong>Email:</strong> support@strangermingle.com</p>
+                                    <p><strong>Email:</strong> strangermingleteam@gmail.com</p>
                                     <p><strong>Website:</strong> Through our official contact form</p>
                                     <p><strong>Response Time:</strong> We aim to respond within 48-72 hours</p>
                                 </div>

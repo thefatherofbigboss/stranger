@@ -457,7 +457,7 @@ export default function SafetyGuidelines() {
                                             <p className="leading-relaxed mb-3 text-sm text-gray-600">You can report violations through:</p>
                                             <ul className="space-y-2 text-gray-600 text-sm list-disc ml-5">
                                                 <li><strong>During Events:</strong> Inform the event organizer immediately</li>
-                                                <li><strong>After Events:</strong> Email safety@strangermingle.com with details</li>
+                                                <li><strong>After Events:</strong> Email strangermingleteam@gmail.com with details</li>
                                                 <li><strong>Website:</strong> Use the &quot;Report Concern&quot; form</li>
                                                 <li><strong>WhatsApp:</strong> Message our safety team</li>
                                             </ul>

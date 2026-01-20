@@ -46,7 +46,7 @@ export default function CookiePolicy() {
   const updateConsent = (newPreferences: ConsentPreferences) => {
     setPreferences(newPreferences);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(newPreferences));
-    
+
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('consent', 'update', newPreferences);
     }
@@ -80,7 +80,7 @@ export default function CookiePolicy() {
 
   const togglePreference = (key: keyof ConsentPreferences) => {
     if (key === 'security_storage') return;
-    
+
     const newPreferences = {
       ...preferences,
       [key]: preferences[key] === 'granted' ? 'denied' : 'granted',
@@ -106,7 +106,7 @@ export default function CookiePolicy() {
             <div className="relative z-10">
               <p className="font-semibold text-lg mb-2 text-blue-100">Last updated: {new Date().toLocaleDateString()}</p>
               <p className="leading-relaxed text-lg text-blue-50">
-                This Cookie Policy explains how Stranger Mingle uses cookies and similar tracking technologies on our website. 
+                This Cookie Policy explains how Stranger Mingle uses cookies and similar tracking technologies on our website.
                 We respect your privacy and give you control over how cookies are used to enhance your browsing experience.
               </p>
             </div>
@@ -121,7 +121,7 @@ export default function CookiePolicy() {
               <div className="w-full">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Manage Your Cookie Preferences</h2>
                 <p className="text-gray-600 mb-6">
-                  You can customize which cookies we use by toggling the options below. Essential cookies are always enabled 
+                  You can customize which cookies we use by toggling the options below. Essential cookies are always enabled
                   as they are necessary for the website to function properly.
                 </p>
 
@@ -133,7 +133,7 @@ export default function CookiePolicy() {
                       <div className="flex-1">
                         <h4 className="font-semibold text-gray-900 mb-1">Necessary Cookies</h4>
                         <p className="text-sm text-gray-600">
-                          Required for the website to function properly. These cannot be disabled as they are essential for security, 
+                          Required for the website to function properly. These cannot be disabled as they are essential for security,
                           authentication, and core functionality.
                         </p>
                       </div>
@@ -148,21 +148,19 @@ export default function CookiePolicy() {
                       <div className="flex-1">
                         <h4 className="font-semibold text-gray-900 mb-1">Analytics Cookies</h4>
                         <p className="text-sm text-gray-600">
-                          Help us understand how visitors interact with our website by collecting and reporting information anonymously. 
+                          Help us understand how visitors interact with our website by collecting and reporting information anonymously.
                           This helps us improve our services and user experience.
                         </p>
                       </div>
                     </div>
                     <button
                       onClick={() => togglePreference('analytics_storage')}
-                      className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors ml-4 shrink-0 ${
-                        preferences.analytics_storage === 'granted' ? 'bg-blue-600' : 'bg-gray-300'
-                      }`}
+                      className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors ml-4 shrink-0 ${preferences.analytics_storage === 'granted' ? 'bg-blue-600' : 'bg-gray-300'
+                        }`}
                     >
                       <span
-                        className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${
-                          preferences.analytics_storage === 'granted' ? 'translate-x-6' : 'translate-x-1'
-                        }`}
+                        className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${preferences.analytics_storage === 'granted' ? 'translate-x-6' : 'translate-x-1'
+                          }`}
                       />
                     </button>
                   </div>
@@ -174,21 +172,19 @@ export default function CookiePolicy() {
                       <div className="flex-1">
                         <h4 className="font-semibold text-gray-900 mb-1">Advertising Cookies</h4>
                         <p className="text-sm text-gray-600">
-                          Used to deliver personalized advertisements and track campaign performance. These cookies help us 
+                          Used to deliver personalized advertisements and track campaign performance. These cookies help us
                           show you relevant content and measure the effectiveness of our marketing efforts.
                         </p>
                       </div>
                     </div>
                     <button
                       onClick={() => togglePreference('ad_storage')}
-                      className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors ml-4 shrink-0 ${
-                        preferences.ad_storage === 'granted' ? 'bg-blue-600' : 'bg-gray-300'
-                      }`}
+                      className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors ml-4 shrink-0 ${preferences.ad_storage === 'granted' ? 'bg-blue-600' : 'bg-gray-300'
+                        }`}
                     >
                       <span
-                        className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${
-                          preferences.ad_storage === 'granted' ? 'translate-x-6' : 'translate-x-1'
-                        }`}
+                        className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${preferences.ad_storage === 'granted' ? 'translate-x-6' : 'translate-x-1'
+                          }`}
                       />
                     </button>
                   </div>
@@ -200,21 +196,19 @@ export default function CookiePolicy() {
                       <div className="flex-1">
                         <h4 className="font-semibold text-gray-900 mb-1">Personalization Cookies</h4>
                         <p className="text-sm text-gray-600">
-                          Allow us to personalize your experience by remembering your preferences, settings, and interests. 
+                          Allow us to personalize your experience by remembering your preferences, settings, and interests.
                           This helps us provide a more tailored browsing experience.
                         </p>
                       </div>
                     </div>
                     <button
                       onClick={() => togglePreference('personalization_storage')}
-                      className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors ml-4 shrink-0 ${
-                        preferences.personalization_storage === 'granted' ? 'bg-blue-600' : 'bg-gray-300'
-                      }`}
+                      className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors ml-4 shrink-0 ${preferences.personalization_storage === 'granted' ? 'bg-blue-600' : 'bg-gray-300'
+                        }`}
                     >
                       <span
-                        className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${
-                          preferences.personalization_storage === 'granted' ? 'translate-x-6' : 'translate-x-1'
-                        }`}
+                        className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${preferences.personalization_storage === 'granted' ? 'translate-x-6' : 'translate-x-1'
+                          }`}
                       />
                     </button>
                   </div>
@@ -238,7 +232,7 @@ export default function CookiePolicy() {
                 <div className="mt-4 p-4 bg-green-50 rounded-xl border border-green-200 flex gap-3">
                   <Info className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
                   <p className="text-sm text-green-800">
-                    <strong>Settings saved!</strong> Your cookie preferences have been updated and will be applied immediately. 
+                    <strong>Settings saved!</strong> Your cookie preferences have been updated and will be applied immediately.
                     You can change these settings at any time by visiting this page.
                   </p>
                 </div>
@@ -255,11 +249,11 @@ export default function CookiePolicy() {
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">What Are Cookies?</h2>
                 <p className="leading-relaxed text-gray-600 mb-4">
-                  Cookies are small text files that are placed on your device (computer, tablet, or mobile) when you visit a website. 
+                  Cookies are small text files that are placed on your device (computer, tablet, or mobile) when you visit a website.
                   They are widely used to make websites work more efficiently and provide information to website owners.
                 </p>
                 <p className="leading-relaxed text-gray-600">
-                  Cookies allow websites to recognize your device and store some information about your preferences or past actions. 
+                  Cookies allow websites to recognize your device and store some information about your preferences or past actions.
                   This helps improve your browsing experience by remembering your settings and providing personalized content.
                 </p>
               </div>
@@ -279,7 +273,7 @@ export default function CookiePolicy() {
                   <div className="bg-purple-50 p-5 rounded-2xl">
                     <h3 className="text-lg font-bold text-gray-900 mb-2">Essential Cookies</h3>
                     <p className="text-gray-600 text-sm mb-3">
-                      These cookies are strictly necessary for the website to function properly. They enable core functionality 
+                      These cookies are strictly necessary for the website to function properly. They enable core functionality
                       such as security, network management, and accessibility.
                     </p>
                     <ul className="space-y-1 text-gray-600 text-sm pl-4">
@@ -293,7 +287,7 @@ export default function CookiePolicy() {
                   <div className="bg-purple-50 p-5 rounded-2xl">
                     <h3 className="text-lg font-bold text-gray-900 mb-2">Analytics Cookies</h3>
                     <p className="text-gray-600 text-sm mb-3">
-                      These cookies help us understand how visitors interact with our website by collecting and reporting 
+                      These cookies help us understand how visitors interact with our website by collecting and reporting
                       information anonymously.
                     </p>
                     <ul className="space-y-1 text-gray-600 text-sm pl-4">
@@ -347,15 +341,15 @@ export default function CookiePolicy() {
                 </p>
                 <ul className="space-y-3 text-gray-600 pl-4 border-l-2 border-teal-100">
                   <li>
-                    <strong>Cookie Preferences on This Page:</strong> Use the cookie management section above to customize 
+                    <strong>Cookie Preferences on This Page:</strong> Use the cookie management section above to customize
                     which cookies you allow.
                   </li>
                   <li>
-                    <strong>Browser Settings:</strong> Most browsers allow you to refuse cookies or alert you when cookies 
+                    <strong>Browser Settings:</strong> Most browsers allow you to refuse cookies or alert you when cookies
                     are being sent. However, disabling cookies may affect website functionality.
                   </li>
                   <li>
-                    <strong>Third-Party Opt-Out:</strong> Some third-party services offer opt-out mechanisms through their 
+                    <strong>Third-Party Opt-Out:</strong> Some third-party services offer opt-out mechanisms through their
                     own websites (e.g., Google Analytics opt-out).
                   </li>
                 </ul>
@@ -398,14 +392,14 @@ export default function CookiePolicy() {
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Session Cookies</h3>
                     <p className="leading-relaxed text-gray-600">
-                      These temporary cookies are deleted when you close your browser. They enable basic website functionality 
+                      These temporary cookies are deleted when you close your browser. They enable basic website functionality
                       during your visit.
                     </p>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Persistent Cookies</h3>
                     <p className="leading-relaxed text-gray-600">
-                      These cookies remain on your device for a set period or until you delete them. They remember your 
+                      These cookies remain on your device for a set period or until you delete them. They remember your
                       preferences and settings for future visits.
                     </p>
                   </div>
@@ -423,7 +417,7 @@ export default function CookiePolicy() {
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Changes to This Cookie Policy</h2>
                 <p className="leading-relaxed text-gray-600 mb-4">
-                  We may update this Cookie Policy from time to time to reflect changes in our practices or for other 
+                  We may update this Cookie Policy from time to time to reflect changes in our practices or for other
                   operational, legal, or regulatory reasons. We will notify you of any material changes by:
                 </p>
                 <ul className="space-y-2 text-gray-600 pl-4 border-l-2 border-gray-100">
@@ -445,8 +439,8 @@ export default function CookiePolicy() {
               <h2 className="text-2xl font-bold mb-4">Questions About Cookies?</h2>
               <p className="mb-4 leading-relaxed text-blue-50">
                 If you have any questions about our use of cookies or this Cookie Policy, please contact us at{' '}
-                <a href="mailto:privacy@strangermingle.com" className="underline hover:text-white">
-                  privacy@strangermingle.com
+                <a href="mailto:strangermingleteam@gmail.com" className="underline hover:text-white">
+                  strangermingleteam@gmail.com
                 </a>
                 {' '}or through our{' '}
                 <Link href="/contact" className="underline hover:text-white">
@@ -462,7 +456,7 @@ export default function CookiePolicy() {
             </div>
           </section>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
