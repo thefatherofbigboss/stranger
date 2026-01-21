@@ -13,11 +13,11 @@ function isRateLimited(ip: string): boolean {
     const now = Date.now();
     const orders = orderCache.get(ip) || [];
     const recentOrders = orders.filter(time => now - time < ORDER_RATE_LIMIT_WINDOW);
-    
+
     if (recentOrders.length >= MAX_ORDERS_PER_IP) {
         return true;
     }
-    
+
     recentOrders.push(now);
     orderCache.set(ip, recentOrders);
     return false;
@@ -44,7 +44,7 @@ function sanitize(str: string): string {
 export async function POST(request: NextRequest) {
     try {
         const clientIP = getClientIP(request);
-        
+
         // Rate limiting
         if (isRateLimited(clientIP)) {
             return NextResponse.json(
@@ -164,7 +164,7 @@ export async function POST(request: NextRequest) {
             if (!paymentDetail) {
                 console.error('Failed to create payment_detail record. Check server logs for details.');
                 return NextResponse.json(
-                    { 
+                    {
                         error: 'Failed to create booking record',
                         hint: 'Check server logs for detailed error information. This might be due to RLS policies or database constraints.'
                     },
@@ -193,7 +193,7 @@ export async function POST(request: NextRequest) {
 
         // Create Instamojo payment request for paid events
         const purpose = event.event_name.substring(0, 40) || 'Event Booking';
-        const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.strangermingle.com'}/api/payments/instamojo/redirect`;
+        const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.strangermingle.com'}/booking-confirmed`;
         const webhookUrl = process.env.INSTAMOJO_WEBHOOK_URL || 'https://www.strangermingle.com/api/payments/webhook';
 
         let paymentRequest;
@@ -217,7 +217,7 @@ export async function POST(request: NextRequest) {
         } catch (instaError: any) {
             console.error('Failed to create Instamojo payment request:', instaError);
             return NextResponse.json(
-                { 
+                {
                     error: 'Failed to create payment request',
                     details: process.env.NODE_ENV === 'development' ? instaError?.message : undefined,
                 },
@@ -241,7 +241,7 @@ export async function POST(request: NextRequest) {
         if (!paymentDetail) {
             console.error('Failed to create payment_detail record. Check server logs for details.');
             return NextResponse.json(
-                { 
+                {
                     error: 'Failed to create payment record',
                     hint: 'Check server logs for detailed error information. This might be due to RLS policies or database constraints.'
                 },
@@ -265,7 +265,7 @@ export async function POST(request: NextRequest) {
             name: error.name,
             code: error.code,
         });
-        
+
         // Provide more detailed error message
         let errorMessage = 'Failed to create order';
         if (error.message) {
@@ -273,9 +273,9 @@ export async function POST(request: NextRequest) {
         } else if (error.error?.description) {
             errorMessage = error.error.description;
         }
-        
+
         return NextResponse.json(
-            { 
+            {
                 error: errorMessage,
                 details: process.env.NODE_ENV === 'development' ? error.stack : undefined
             },
