@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getRazorpayInstance, getRazorpayKeyId } from '@/lib/razorpay';
 import { getEventById, createBooking } from '@/lib/events';
 import { createOrUpdateUserProfile } from '@/lib/userProfile';
 import { createServerClient } from '@/lib/supabaseClient';
+import { createPaymentRequest } from '@/lib/instamojo';
 
 // Rate limiting for payment orders
 const orderCache = new Map<string, number[]>();
@@ -146,7 +146,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Handle free events (price = 0) - skip Razorpay and directly confirm booking
+        // Handle free events (price = 0) - skip gateway and directly confirm booking
         if (price === 0) {
             // Create payment_details record with status 'completed' for free events
             const paymentDetail = await createBooking({
@@ -191,47 +191,35 @@ export async function POST(request: NextRequest) {
             });
         }
 
-        // Convert price to paise (Razorpay uses smallest currency unit)
-        const amountInPaise = Math.round(price * 100);
+        // Create Instamojo payment request for paid events
+        const purpose = event.event_name.substring(0, 40) || 'Event Booking';
+        const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.strangermingle.com'}/api/payments/instamojo/redirect`;
+        const webhookUrl = process.env.INSTAMOJO_WEBHOOK_URL || 'https://www.strangermingle.com/api/payments/webhook';
 
-        // Create Razorpay order for paid events
-        let razorpay;
+        let paymentRequest;
         try {
-            razorpay = getRazorpayInstance();
-        } catch (razorpayError: any) {
-            console.error('Failed to initialize Razorpay:', razorpayError);
-            return NextResponse.json(
-                { error: 'Payment gateway configuration error. Please check Razorpay keys.' },
-                { status: 500 }
-            );
-        }
-
-        let order;
-        try {
-            // Generate receipt ID (max 40 characters for Razorpay)
-            // Format: EVT-{shortEventId}-{timestamp}
-            // Use first 8 chars of eventId UUID and last 8 digits of timestamp
-            const shortEventId = eventId.substring(0, 8);
-            const timestamp = Date.now().toString().slice(-8);
-            const receipt = `EVT-${shortEventId}-${timestamp}`;
-            
-            order = await razorpay.orders.create({
-                amount: amountInPaise,
-                currency: 'INR',
-                receipt: receipt,
-                notes: {
+            paymentRequest = await createPaymentRequest({
+                amount: Number(price.toFixed(2)),
+                purpose,
+                buyer_name: sanitizedName,
+                email: sanitizedEmail,
+                phone: cleanedPhone,
+                redirect_url: redirectUrl,
+                webhook: webhookUrl,
+                allow_repeated_payments: false,
+                send_email: Boolean(sanitizedEmail),
+                send_sms: true,
+                metadata: {
                     event_id: eventId,
                     event_name: event.event_name,
-                    user_name: sanitizedName,
-                    user_phone: cleanedPhone,
                 },
             });
-        } catch (razorpayOrderError: any) {
-            console.error('Failed to create Razorpay order:', razorpayOrderError);
+        } catch (instaError: any) {
+            console.error('Failed to create Instamojo payment request:', instaError);
             return NextResponse.json(
                 { 
-                    error: razorpayOrderError.error?.description || 'Failed to create payment order',
-                    details: razorpayOrderError.error
+                    error: 'Failed to create payment request',
+                    details: process.env.NODE_ENV === 'development' ? instaError?.message : undefined,
                 },
                 { status: 500 }
             );
@@ -246,7 +234,7 @@ export async function POST(request: NextRequest) {
             spots_booked: 1, // Default to 1 spot per booking
             amount_paid: price,
             payment_status: 'pending',
-            razorpay_order_id: order.id,
+            instamojo_payment_request_id: paymentRequest.id,
             razorpay_payment_id: null,
         });
 
@@ -263,14 +251,14 @@ export async function POST(request: NextRequest) {
 
         // Return order details to client
         return NextResponse.json({
-            orderId: order.id,
-            amount: order.amount,
-            currency: order.currency,
-            key: getRazorpayKeyId(),
+            paymentRequestId: paymentRequest.id,
+            amount: paymentRequest.amount,
+            currency: 'INR',
+            longurl: paymentRequest.longurl,
             paymentDetailId: paymentDetail.id,
         });
     } catch (error: any) {
-        console.error('Error creating Razorpay order:', error);
+        console.error('Error creating Instamojo payment:', error);
         console.error('Error stack:', error.stack);
         console.error('Error details:', {
             message: error.message,

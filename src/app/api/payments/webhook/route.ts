@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyWebhookSignature } from '@/lib/razorpay';
+import { verifyInstamojoSignature } from '@/lib/instamojo';
 import { createServerClient } from '@/lib/supabaseClient';
 import { getEventById } from '@/lib/events';
 
 export async function POST(request: NextRequest) {
     try {
         // Get webhook secret from environment
-        const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
-        if (!webhookSecret) {
-            console.error('RAZORPAY_WEBHOOK_SECRET is not configured');
+        const salt = process.env.INSTAMOJO_SALT;
+        if (!salt) {
+            console.error('INSTAMOJO_SALT is not configured');
             return NextResponse.json(
                 { error: 'Webhook secret not configured' },
                 { status: 500 }
@@ -16,18 +16,33 @@ export async function POST(request: NextRequest) {
         }
 
         // Get the raw body for signature verification
-        const body = await request.text();
-        const signature = request.headers.get('x-razorpay-signature');
+        const rawBody = await request.text();
+        const signature =
+            request.headers.get('x-instamojo-signature') ||
+            request.headers.get('X-Instamojo-Signature');
 
-        if (!signature) {
-            return NextResponse.json(
-                { error: 'Missing signature' },
-                { status: 400 }
-            );
+        let parsedBody: Record<string, any> | null = null;
+        try {
+            parsedBody = rawBody ? JSON.parse(rawBody) : {};
+        } catch {
+            try {
+                const searchParams = new URLSearchParams(rawBody);
+                parsedBody = Object.fromEntries(searchParams.entries());
+            } catch {
+                parsedBody = null;
+            }
         }
 
+        const mac = parsedBody?.mac || parsedBody?.payload?.mac;
+
         // Verify webhook signature
-        const isValid = verifyWebhookSignature(webhookSecret, body, signature);
+        const isValid = verifyInstamojoSignature({
+            rawBody,
+            signatureHeader: signature,
+            salt,
+            mac,
+            parsedBody: parsedBody || undefined,
+        });
         if (!isValid) {
             console.error('Invalid webhook signature');
             return NextResponse.json(
@@ -36,35 +51,58 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Parse the webhook payload
-        const payload = JSON.parse(body);
-        const event = payload.event;
-        const payment = payload.payload?.payment?.entity;
-
-        if (!payment) {
+        if (!parsedBody) {
             return NextResponse.json(
                 { error: 'Invalid webhook payload' },
                 { status: 400 }
             );
         }
 
+        const status =
+            parsedBody.status ||
+            parsedBody.payment_status ||
+            parsedBody?.payload?.payment?.status ||
+            parsedBody?.payload?.payment?.entity?.status;
+        const normalizedStatus = typeof status === 'string' ? status.toLowerCase() : '';
+
+        const paymentRequestId =
+            parsedBody.payment_request_id ||
+            parsedBody?.payload?.payment_request?.id ||
+            parsedBody?.payload?.payment?.payment_request_id ||
+            parsedBody?.payment_request?.id;
+
+        const paymentId =
+            parsedBody.payment_id ||
+            parsedBody?.payload?.payment?.id ||
+            parsedBody?.payload?.payment?.entity?.id;
+
+        const amountValue =
+            parsedBody.amount ||
+            parsedBody?.payload?.payment?.amount ||
+            parsedBody?.payload?.payment?.entity?.amount;
+
+        const amount = typeof amountValue === 'string' ? parseFloat(amountValue) : Number(amountValue);
+
+        if (!paymentRequestId) {
+            return NextResponse.json(
+                { error: 'Missing payment request id' },
+                { status: 400 }
+            );
+        }
+
         const supabase = createServerClient();
 
-        // Handle payment.captured event
-        if (event === 'payment.captured') {
-            const orderId = payment.order_id;
-            const paymentId = payment.id;
-            const amount = payment.amount / 100; // Convert from paise to rupees
-
-            // Find the payment_details record by razorpay_order_id
+        // Handle successful payment
+        if (normalizedStatus === 'credit' || normalizedStatus === 'successful' || normalizedStatus === 'completed') {
+            // Find the payment_details record by instamojo_payment_request_id
             const { data: paymentDetail, error: fetchError } = await supabase
                 .from('payment_details')
                 .select('*')
-                .eq('razorpay_order_id', orderId)
+                .eq('instamojo_payment_request_id', paymentRequestId)
                 .single();
 
             if (fetchError || !paymentDetail) {
-                console.error('Payment detail not found for order:', orderId);
+                console.error('Payment detail not found for payment request:', paymentRequestId);
                 return NextResponse.json(
                     { error: 'Payment detail not found' },
                     { status: 404 }
@@ -77,7 +115,7 @@ export async function POST(request: NextRequest) {
             }
 
             // Verify amount matches
-            if (Math.abs(paymentDetail.amount_paid - amount) > 0.01) {
+            if (!Number.isNaN(amount) && Math.abs(paymentDetail.amount_paid - amount) > 0.01) {
                 console.error('Amount mismatch:', paymentDetail.amount_paid, amount);
                 return NextResponse.json(
                     { error: 'Amount mismatch' },
@@ -103,7 +141,7 @@ export async function POST(request: NextRequest) {
                     .from('payment_details')
                     .update({
                         payment_status: 'failed',
-                        razorpay_payment_id: paymentId,
+                        instamojo_payment_id: paymentId || null,
                     })
                     .eq('id', paymentDetail.id);
                 return NextResponse.json(
@@ -128,7 +166,7 @@ export async function POST(request: NextRequest) {
                     .from('payment_details')
                     .update({
                         payment_status: 'failed',
-                        razorpay_payment_id: paymentId,
+                        instamojo_payment_id: paymentId || null,
                     })
                     .eq('id', paymentDetail.id);
                 return NextResponse.json(
@@ -142,7 +180,7 @@ export async function POST(request: NextRequest) {
                 .from('payment_details')
                 .update({
                     payment_status: 'completed',
-                    razorpay_payment_id: paymentId,
+                    instamojo_payment_id: paymentId || null,
                     updated_at: new Date().toISOString(),
                 })
                 .eq('id', paymentDetail.id);
@@ -158,20 +196,17 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ status: 'ok' });
         }
 
-        // Handle payment.failed event
-        if (event === 'payment.failed') {
-            const orderId = payment.order_id;
-            const paymentId = payment.id;
-
+        // Handle payment failure/refund
+        if (normalizedStatus === 'failed' || normalizedStatus === 'failure' || normalizedStatus === 'refunded') {
             // Update payment_details status to failed
             const { error: updateError } = await supabase
                 .from('payment_details')
                 .update({
-                    payment_status: 'failed',
-                    razorpay_payment_id: paymentId,
+                    payment_status: normalizedStatus === 'refunded' ? 'refunded' : 'failed',
+                    instamojo_payment_id: paymentId || null,
                     updated_at: new Date().toISOString(),
                 })
-                .eq('razorpay_order_id', orderId);
+                .eq('instamojo_payment_request_id', paymentRequestId);
 
             if (updateError) {
                 console.error('Error updating failed payment:', updateError);

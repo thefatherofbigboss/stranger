@@ -12,7 +12,7 @@ interface PaymentModalProps {
 
 declare global {
     interface Window {
-        Razorpay: any;
+        Instamojo: any;
     }
 }
 
@@ -22,21 +22,21 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [razorpayLoaded, setRazorpayLoaded] = useState(false);
+    const [instamojoLoaded, setInstamojoLoaded] = useState(false);
 
     const price = event.discounted_price && event.discounted_price < event.regular_price
         ? event.discounted_price
         : event.regular_price;
 
-    // Load Razorpay script only for paid events
+    // Load Instamojo script only for paid events
     useEffect(() => {
-        if (!isOpen || razorpayLoaded || price === 0) return;
+        if (!isOpen || instamojoLoaded || price === 0) return;
 
         const script = document.createElement('script');
-        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.src = process.env.NEXT_PUBLIC_INSTAMOJO_CHECKOUT_SCRIPT || 'https://js.instamojo.com/v1/checkout.js';
         script.async = true;
         script.onload = () => {
-            setRazorpayLoaded(true);
+            setInstamojoLoaded(true);
         };
         document.body.appendChild(script);
 
@@ -46,7 +46,7 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
                 document.body.removeChild(script);
             }
         };
-    }, [isOpen, razorpayLoaded, price]);
+    }, [isOpen, instamojoLoaded, price]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -80,7 +80,7 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
                 throw new Error(errorMessage);
             }
 
-            // Handle free events - skip Razorpay payment
+            // Handle free events - skip payment
             if (data.isFree) {
                 setLoading(false);
                 onClose();
@@ -89,49 +89,28 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
                 return;
             }
 
-            // Initialize Razorpay Checkout for paid events
-            if (!window.Razorpay) {
-                throw new Error('Razorpay SDK not loaded');
+            if (!window.Instamojo) {
+                throw new Error('Instamojo SDK not loaded');
             }
 
-            const options = {
-                key: data.key,
-                amount: data.amount,
-                currency: data.currency,
-                name: 'Stranger Mingle',
-                description: `Booking for ${event.event_name}`,
-                order_id: data.orderId,
-                handler: function (response: any) {
-                    // Payment successful
-                    setLoading(false);
-                    onClose();
-                    // Show success message
-                    alert('Payment successful! Your booking is confirmed.');
-                    // Optionally reload the page to update event availability
-                    window.location.reload();
-                },
-                prefill: {
-                    name: name,
-                    contact: phone,
-                    email: email || undefined,
-                },
-                theme: {
-                    color: '#2563eb',
-                },
-                modal: {
-                    ondismiss: function () {
-                        setLoading(false);
+            try {
+                window.Instamojo.configure({
+                    handlers: {
+                        onOpen: () => setLoading(true),
+                        onClose: () => setLoading(false),
                     },
-                },
-            };
+                    redirect_mode: 'modal',
+                });
+            } catch (configError) {
+                console.warn('Instamojo configure not available, continuing with open():', configError);
+            }
 
-            const razorpay = new window.Razorpay(options);
-            razorpay.on('payment.failed', function (response: any) {
-                setError('Payment failed. Please try again.');
-                setLoading(false);
-            });
+            window.Instamojo.open(data.longurl);
 
-            razorpay.open();
+            // Rely on webhook as source of truth; inform user to await confirmation
+            setLoading(false);
+            onClose();
+            alert('Complete the payment in the popup. You will receive confirmation shortly.');
         } catch (err: any) {
             setError(err.message || 'An error occurred. Please try again.');
             setLoading(false);
@@ -268,7 +247,7 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
                         <div className="pt-4">
                             <button
                                 type="submit"
-                                disabled={loading || (price > 0 && !razorpayLoaded)}
+                                disabled={loading || (price > 0 && !instamojoLoaded)}
                                 className="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold text-lg transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {loading ? 'Processing...' : (price === 0 ? 'Confirm Booking' : `Pay ${formatEventPrice(event)}`)}
