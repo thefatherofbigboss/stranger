@@ -36,6 +36,9 @@ export type InstamojoPaymentRequest = {
     shorturl?: string;
 };
 
+// Simple in-memory cache for the access token
+let cachedToken: { token: string; expiresAt: number } | null = null;
+
 function getEnvConfig(): InstamojoEnvironment {
     const {
         INSTAMOJO_API_KEY,
@@ -68,22 +71,76 @@ function getEnvConfig(): InstamojoEnvironment {
     };
 }
 
+/**
+ * Obtains an OAuth2 access token from Instamojo
+ */
+async function getAccessToken(config: InstamojoEnvironment): Promise<string> {
+    const now = Date.now();
+
+    // Return cached token if still valid (with 5-minute buffer)
+    if (cachedToken && cachedToken.expiresAt > now + 300000) {
+        return cachedToken.token;
+    }
+
+    const payload = new URLSearchParams({
+        grant_type: 'client_credentials',
+        client_id: config.clientId,
+        client_secret: config.clientSecret,
+    });
+
+    // For production, OAuth endpoints are on www.instamojo.com
+    // For sandbox, they are on test.instamojo.com
+    const authBaseUrl = config.baseUrl.includes('test')
+        ? 'https://test.instamojo.com'
+        : 'https://www.instamojo.com';
+
+    const response = await fetch(`${authBaseUrl}/oauth2/token/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: payload.toString(),
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to obtain Instamojo access token (${response.status}): ${errorText}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.access_token) {
+        throw new Error('Instamojo token response did not contain access_token');
+    }
+
+    // Cache the token
+    cachedToken = {
+        token: data.access_token,
+        expiresAt: now + (data.expires_in * 1000),
+    };
+
+    return data.access_token;
+}
+
 export async function createPaymentRequest(
     payload: CreatePaymentRequestPayload
 ): Promise<InstamojoPaymentRequest> {
     const config = getEnvConfig();
+    const accessToken = await getAccessToken(config);
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
 
+    // Ensure baseUrl doesn't end with slash when joining paths
+    const baseUrl = config.baseUrl.endsWith('/') ? config.baseUrl.slice(0, -1) : config.baseUrl;
+
     try {
-        const response = await fetch(`${config.baseUrl}/v2/payment_requests/`, {
+        const response = await fetch(`${baseUrl}/v2/payment_requests/`, {
             method: 'POST',
             signal: controller.signal,
             headers: {
                 'Content-Type': 'application/json',
-                'X-Api-Key': config.apiKey,
-                'X-Auth-Token': config.authToken,
+                'Authorization': `Bearer ${accessToken}`,
             },
             body: JSON.stringify(payload),
         });
