@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import SocialLinks from './SocialLinks';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -7,11 +8,9 @@ export default function Footer() {
         <footer className="w-full border-t border-gray-200 bg-gray-50/80 backdrop-blur-xl mt-auto z-10 relative">
             <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div className="flex flex-col items-center md:items-start gap-2">
-                        <span className="font-bold text-gray-900 tracking-tight">Stranger Mingle</span>
-                        <span className="text-gray-500 text-sm">
-                            © {currentYear} All rights reserved.
-                        </span>
+                    <div className="flex flex-col items-center md:items-start gap-4">
+                        <span className="font-bold text-gray-900 tracking-tight text-lg">Stranger Mingle</span>
+                        <SocialLinks variant="footer" />
                     </div>
 
                     <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-500">

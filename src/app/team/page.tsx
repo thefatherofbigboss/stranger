@@ -28,15 +28,15 @@ const teamMembers = [
         }
     },
     {
-        name: "Monali K",
-        role: "Legal and Safety Lead",
-        image: "/images/team/anjali.png",
-        bio: "Monali oversees our verification processes and safety protocols to ensure Stranger Mingle remains a secure space.",
+        name: "Meghana",
+        role: "Co-Founder",
+        image: "/images/team/meghana.jpeg",
+        bio: "Meghana oversees our verification processes and safety protocols to ensure Stranger Mingle remains a secure space.",
         icon: <ShieldAlert className="w-5 h-5" />,
         color: "text-red-600",
         bgColor: "bg-red-50",
         social: {
-            linkedin: "https://www.linkedin.com/company/strangermingle",
+            linkedin: "https://www.linkedin.com/in/meghana-megha-2a0804296",
         }
     }
 ];

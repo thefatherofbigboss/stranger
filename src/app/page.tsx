@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getAllLiveEvents } from "@/lib/events";
 import EventCard from "@/components/EventCard";
 import RecentPosts from "@/components/RecentPosts";
+import SocialLinks from "@/components/SocialLinks";
 
 export const dynamic = 'force-dynamic';
 
@@ -53,13 +54,19 @@ export default async function Home() {
             <p className="text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 drop-shadow-md">
               Stranger Mingle is built to help people make real connections locally, not online. We create safe spaces where strangers meet and friendships begin through organized weekend events across Indian cities.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center animate-in fade-in slide-in-from-bottom-4 duration-500 delay-400">
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center animate-in fade-in slide-in-from-bottom-4 duration-500 delay-400 mb-10">
               <a href="#events" className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-500/25 hover:scale-105">
                 See Upcoming Events
               </a>
               <a href="/about" className="px-8 py-4 bg-white/95 backdrop-blur-sm hover:bg-white text-gray-900 border border-white/20 rounded-xl font-bold text-lg transition-all hover:scale-105">
                 Read Our Story
               </a>
+            </div>
+
+            {/* Social Media Links */}
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500">
+              <p className="text-white/80 text-sm font-medium mb-4 uppercase tracking-widest">Follow Us</p>
+              <SocialLinks />
             </div>
           </div>
         </section>

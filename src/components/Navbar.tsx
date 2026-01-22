@@ -112,11 +112,11 @@ export default function Navbar() {
                             Mumbai
                         </Link>
                         <Link
-                            href="/delhi"
+                            href="/Hyderabad"
                             className="px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-black rounded-lg transition-colors"
                             onClick={closeMobileMenu}
                         >
-                            Delhi
+                            Hyderabad
                         </Link>
                         <Link
                             href="/bangalore"
