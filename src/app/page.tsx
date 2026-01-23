@@ -187,14 +187,14 @@ export default async function Home() {
 
         {/* Testimonial / Social Proof */}
         <section className="w-full max-w-5xl mx-auto px-4 py-20 text-center">
-          <h2 className="text-2xl font-semibold text-gray-500 mb-10 tracking-wide uppercase">Trusted by 2,000+ Punekars</h2>
+          <h2 className="text-2xl font-semibold text-gray-500 mb-10 tracking-wide uppercase">Trusted by 500+ People</h2>
           <div className="grid md:grid-cols-2 gap-8 text-left">
             <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">&quot;Moved to Pune for my job and knew literally no one. Went to the Sunday Chai event thinking it would be awkward, but met 3 people who are now my regular trekking group. Best decision ever.&quot;</p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">R</div>
                 <div>
-                  <div className="font-bold text-gray-900">Rahul Deshmukh</div>
+                  <div className="font-bold text-gray-900">Rishikesh Shekade</div>
                   <div className="text-xs text-gray-500">Software Engineer, Hinjewadi</div>
                 </div>
               </div>
@@ -204,7 +204,7 @@ export default async function Home() {
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold">P</div>
                 <div>
-                  <div className="font-bold text-gray-900">Priya Sharma</div>
+                  <div className="font-bold text-gray-900">Anuradha</div>
                   <div className="text-xs text-gray-500">Student, Symbiosis</div>
                 </div>
               </div>

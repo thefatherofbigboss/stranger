@@ -31,7 +31,7 @@ const teamMembers = [
         name: "Meghana",
         role: "Co-Founder",
         image: "/images/team/meghana.jpeg",
-        bio: "Meghana oversees our verification processes and safety protocols to ensure Stranger Mingle remains a secure space.",
+        bio: "Meghana transforms ideas into unforgettable experiences, bringing creativity, precision, and passion to every detail. She doesn't just plan events, she creates moments that people remember long after the celebration ends.",
         icon: <ShieldAlert className="w-5 h-5" />,
         color: "text-red-600",
         bgColor: "bg-red-50",

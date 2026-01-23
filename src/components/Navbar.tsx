@@ -40,8 +40,14 @@ export default function Navbar() {
                         <Link href="/mumbai" className="hover:text-black transition-colors hidden md:block">
                             Mumbai
                         </Link>
+                        <Link href="/delhi" className="hover:text-black transition-colors hidden md:block">
+                            Delhi
+                        </Link>
                         <Link href="/bangalore" className="hover:text-black transition-colors hidden md:block">
                             Bangalore
+                        </Link>
+                        <Link href="/hyderabad" className="hover:text-black transition-colors hidden md:block">
+                            Hyderabad
                         </Link>
                         <Link href="/events" className="hover:text-black transition-colors hidden sm:block">
                             Events
@@ -112,11 +118,11 @@ export default function Navbar() {
                             Mumbai
                         </Link>
                         <Link
-                            href="/Hyderabad"
+                            href="/delhi"
                             className="px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-black rounded-lg transition-colors"
                             onClick={closeMobileMenu}
                         >
-                            Hyderabad
+                            Delhi
                         </Link>
                         <Link
                             href="/bangalore"
@@ -124,6 +130,13 @@ export default function Navbar() {
                             onClick={closeMobileMenu}
                         >
                             Bangalore
+                        </Link>
+                        <Link
+                            href="/hyderabad"
+                            className="px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-black rounded-lg transition-colors"
+                            onClick={closeMobileMenu}
+                        >
+                            Hyderabad
                         </Link>
                         <Link
                             href="/events"

@@ -3,7 +3,7 @@ import { createServerClient } from './supabaseClient';
 // Database Event interface matching the database schema
 export interface Event {
     id: string;
-    city: 'pune' | 'mumbai' | 'delhi' | 'bangalore';
+    city: 'pune' | 'mumbai' | 'delhi' | 'bangalore' | 'hyderabad';
     event_name: string;
     start_date: string; // ISO date string
     end_date: string; // ISO date string
@@ -64,17 +64,17 @@ export function calculateEventStatus(event: Event): 'live' | 'closed' | 'cancell
 
     const now = new Date();
     const endDate = new Date(`${event.end_date}T${event.end_time}`);
-    
+
     // If event has passed, suggest closed
     if (endDate < now) {
         return 'closed';
     }
-    
+
     // If fully booked, suggest closed
     if (event.booked_spots >= event.available_seats) {
         return 'closed';
     }
-    
+
     // Otherwise, suggest live
     return 'live';
 }
@@ -84,28 +84,28 @@ export function formatEventPrice(event: Event): string {
     if (event.regular_price === 0) {
         return 'Free';
     }
-    
+
     if (event.discounted_price && event.discounted_price < event.regular_price) {
         return `₹${event.discounted_price.toFixed(0)}`;
     }
-    
+
     return `₹${event.regular_price.toFixed(0)}`;
 }
 
 export function formatEventDate(startDate: string, endDate: string): string {
     const start = new Date(startDate);
     const end = new Date(endDate);
-    
-    const options: Intl.DateTimeFormatOptions = { 
-        weekday: 'long', 
-        month: 'short', 
-        day: 'numeric' 
+
+    const options: Intl.DateTimeFormatOptions = {
+        weekday: 'long',
+        month: 'short',
+        day: 'numeric'
     };
-    
+
     if (startDate === endDate) {
         return start.toLocaleDateString('en-IN', options);
     }
-    
+
     return `${start.toLocaleDateString('en-IN', options)} - ${end.toLocaleDateString('en-IN', options)}`;
 }
 
@@ -117,36 +117,36 @@ export function formatEventTime(startTime: string, endTime: string): string {
         const displayHour = hour % 12 || 12;
         return `${displayHour}:${minutes} ${ampm}`;
     };
-    
+
     return `${formatTime(startTime)} - ${formatTime(endTime)}`;
 }
 
 export function getSpotsLabel(event: Event): string {
     const remaining = event.available_seats - event.booked_spots;
-    
+
     if (remaining === 0) {
         return 'Sold Out';
     }
-    
+
     if (remaining <= 3) {
         return 'Few Left';
     }
-    
+
     if (remaining <= event.available_seats * 0.2) {
         return 'Filling Fast';
     }
-    
+
     if (remaining <= event.available_seats * 0.5) {
         return 'Limited Spots';
     }
-    
+
     return 'Open';
 }
 
 // Database query functions
 export async function getEventsByCity(city: string): Promise<Event[]> {
     const supabase = createServerClient();
-    
+
     const { data, error } = await supabase
         .from('events')
         .select('*')
@@ -154,47 +154,47 @@ export async function getEventsByCity(city: string): Promise<Event[]> {
         .eq('status', 'live')
         .order('start_date', { ascending: true })
         .order('start_time', { ascending: true });
-    
+
     if (error) {
         console.error('Error fetching events by city:', error);
         return [];
     }
-    
+
     return data || [];
 }
 
 export async function getAllLiveEvents(): Promise<Event[]> {
     const supabase = createServerClient();
-    
+
     const { data, error } = await supabase
         .from('events')
         .select('*')
         .eq('status', 'live')
         .order('start_date', { ascending: true })
         .order('start_time', { ascending: true });
-    
+
     if (error) {
         console.error('Error fetching all live events:', error);
         return [];
     }
-    
+
     return data || [];
 }
 
 export async function getEventById(id: string): Promise<Event | null> {
     const supabase = createServerClient();
-    
+
     const { data, error } = await supabase
         .from('events')
         .select('*')
         .eq('id', id)
         .single();
-    
+
     if (error) {
         console.error('Error fetching event by id:', error);
         return null;
     }
-    
+
     return data;
 }
 
@@ -202,19 +202,19 @@ export async function getEventById(id: string): Promise<Event | null> {
 // This prevents unauthorized access to cancelled events via direct URL
 export async function getPublicEventById(id: string): Promise<Event | null> {
     const supabase = createServerClient();
-    
+
     const { data, error } = await supabase
         .from('events')
         .select('*')
         .eq('id', id)
         .in('status', ['live', 'closed'])
         .single();
-    
+
     if (error) {
         console.error('Error fetching public event by id:', error);
         return null;
     }
-    
+
     return data;
 }
 
@@ -223,17 +223,17 @@ export async function getPublicEventById(id: string): Promise<Event | null> {
 // Also supports UUID fallback for backward compatibility (if slug not found and param looks like UUID, try querying by id)
 export async function getPublicEventBySlug(slug: string): Promise<Event | null> {
     const supabase = createServerClient();
-    
+
     if (!slug) {
         console.error('getPublicEventBySlug: slug is empty or undefined');
         return null;
     }
-    
+
     // Check if slug looks like a UUID (backward compatibility)
     // UUID format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
     const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     const isUuid = uuidPattern.test(slug);
-    
+
     // If it's a UUID, query by id directly (matching the working getPublicEventById pattern)
     if (isUuid) {
         const { data, error } = await supabase
@@ -242,7 +242,7 @@ export async function getPublicEventBySlug(slug: string): Promise<Event | null> 
             .eq('id', slug)
             .in('status', ['live', 'closed'])
             .single();
-        
+
         if (error) {
             // PGRST116 means no rows found - that's OK, just return null
             if (error.code !== 'PGRST116') {
@@ -255,10 +255,10 @@ export async function getPublicEventBySlug(slug: string): Promise<Event | null> 
             }
             return null;
         }
-        
+
         return data || null;
     }
-    
+
     // Otherwise, try to find by slug
     const { data, error } = await supabase
         .from('events')
@@ -266,7 +266,7 @@ export async function getPublicEventBySlug(slug: string): Promise<Event | null> 
         .eq('slug', slug)
         .in('status', ['live', 'closed'])
         .single();
-    
+
     if (error) {
         // PGRST116 means no rows found - that's OK, just return null
         if (error.code !== 'PGRST116') {
@@ -279,7 +279,7 @@ export async function getPublicEventBySlug(slug: string): Promise<Event | null> 
         }
         return null;
     }
-    
+
     return data || null;
 }
 
@@ -297,7 +297,7 @@ export async function createBooking(bookingData: {
     instamojo_payment_id?: string | null;
 }): Promise<PaymentDetail | null> {
     const supabase = createServerClient();
-    
+
     const { data, error } = await supabase
         .from('payment_details')
         .insert({
@@ -315,7 +315,7 @@ export async function createBooking(bookingData: {
         })
         .select()
         .single();
-    
+
     if (error) {
         console.error('Error creating payment detail:', error);
         console.error('Error details:', {
@@ -326,10 +326,10 @@ export async function createBooking(bookingData: {
         });
         return null;
     }
-    
+
     // NOTE: Do NOT increment booked_spots here
     // Seats will be incremented only after successful payment verification via webhook
     // This prevents race conditions and ensures payment is confirmed before booking seats
-    
+
     return data;
 }
