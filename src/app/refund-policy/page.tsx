@@ -240,7 +240,7 @@ export default function RefundPolicy() {
                                         <p className="leading-relaxed mb-2 text-gray-600">Contact us via:</p>
                                         <ul className="space-y-1 text-gray-600 text-sm ml-6 list-disc">
                                             <li>Email: strangermingleteam@gmail.com</li>
-                                            <li>WhatsApp: [Your contact number]</li>
+                                            <li>WhatsApp: Y7411820025</li>
                                             <li>Website contact form</li>
                                         </ul>
                                         <p className="mt-2 text-xs text-gray-500 italic">
@@ -409,7 +409,7 @@ export default function RefundPolicy() {
                                         <h3 className="text-lg font-bold text-gray-900 mb-2">Contact Channels</h3>
                                         <div className="bg-white p-4 rounded-xl border border-gray-200">
                                             <p className="mb-2 text-gray-700"><strong>Email:</strong> strangermingleteam@gmail.com</p>
-                                            <p className="mb-2 text-gray-700"><strong>WhatsApp:</strong> [Your contact number]</p>
+                                            <p className="mb-2 text-gray-700"><strong>WhatsApp:</strong> 7411820025</p>
                                             <p className="mb-2 text-gray-700"><strong>Website:</strong> Contact form on strangermingle.com</p>
                                             <p className="text-sm text-gray-500 mt-3">
                                                 <strong>Response Time:</strong> We aim to respond within 24 hours during business days

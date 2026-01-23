@@ -8,7 +8,7 @@ readTime: "10–12 minutes"
 category: "Social Trends"
 image: "https://res.cloudinary.com/dt3rse8bg/image/upload/v1768885582/pexels-thrissurkaranphotography-31236876_ywt9f1.jpg"
 featured: false
-tags: ["Offline Meetups", "Dating Apps", "Social Connection", "Urban India", "Stranger Meetups"]
+tags: ["Offline Meetups", "Dating Apps", "Social Connection", "Urban India", "Hyderabad", "Stranger Meetups"]
 keywords: ["offline meetups India", "dating apps vs meetups", "social events in metro cities", "real connections India", "Stranger Mingle events"]
 ---
 

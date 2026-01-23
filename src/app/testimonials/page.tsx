@@ -1,40 +1,40 @@
 export default function Testimonials() {
     const testimonials = [
         {
-            name: "Alex M.",
-            location: "United Kingdom",
-            text: "I was feeling bored one night and stumbled upon this. Ended up talking to someone from Brazil for 2 hours about music. It was surprisingly wholesome!",
+            name: "Rishikesh Shekade",
+            location: "Pune, India",
+            text: "I joined this group with my friend and initially we were just 2 of us. But slowly we started meeting new people and now we have a group of 10-15 people who regularly hang out together. It's a great way to meet new people and make friends.",
+            rating: 4.5
+        },
+        {
+            name: "Anuradha",
+            location: "Pune, India",
+            text: "I met Trishul through my another friend and now he is my good friend. I wanted to meet people naturally. The board game night was so much fun, and I didn't have to worry about forcing conversation.",
             rating: 5
         },
         {
-            name: "Sarah K.",
-            location: "Canada",
-            text: "Love that you don't need to sign up. I hate giving my email to random sites. The interface is super clean too.",
-            rating: 5
-        },
-        {
-            name: "David R.",
-            location: "Australia",
-            text: "Better than the other random chat sites I've tried. Less bots, more real people. The video quality is solid.",
+            name: "Ajay Chandra",
+            location: "Bengaluru, India",
+            text: "I am MBA student. I was looking for a way to meet new people and make friends. I found this group and it has been a great experience.",
             rating: 4
         },
         {
-            name: "Emily J.",
-            location: "USA",
-            text: "Met a gaming buddy here last week. We've been playing Valorant together ever since. 10/10 would recommend.",
+            name: "Varsha Sundaram",
+            location: "Bengaluru, India",
+            text: "I'm working in Bengaluru since last 5 years and i haven't met many people. This group helped me to connect with new people and make friends.",
             rating: 5
         },
         {
-            name: "Michael T.",
-            location: "Germany",
-            text: "Simple, fast, and does what it says. The dark mode is easy on the eyes for late night chats.",
+            name: "Arun G",
+            location: "Bengaluru, India",
+            text: "I'm into theater and Trishul helped me to connect with like minded people. I made good connections with locals.",
             rating: 5
         },
         {
-            name: "Priya S.",
-            location: "India",
-            text: "A great way to practice English with native speakers. Everyone I've met has been friendly so far.",
-            rating: 4
+            name: "Priya S",
+            location: "Pune, India",
+            text: "Basically from Bengaluru and I met Trishul in Bengaluru. When he started initial activities in Bengaluru, I was one of the first few to join. I had a great time and made some good friends. Now I'm in Pune and I'm glad to see that Trishul has started activities in Pune as well. I'm looking forward to join them and make some new friends.",
+            rating: 5
         }
     ];
 
