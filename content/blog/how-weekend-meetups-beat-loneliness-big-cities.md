@@ -2,7 +2,7 @@
 title: "How Weekend Meetups Can Help Beat Loneliness in Big Cities"
 description: "In India’s fast-paced metros, loneliness is a silent epidemic. Discover how weekend meetups are becoming powerful social lifelines, helping urban Indians build friendships, community, and emotional wellbeing."
 excerpt: "From crowded streets to quiet hearts, urban loneliness is real. Weekend meetups are emerging as one of the most effective ways for city dwellers to reconnect, rediscover belonging, and rebuild social lives."
-author: "Stranger Mingle Team"
+author: "Ashwini"
 date: 2026-01-19
 readTime: "9 min read"
 category: "Social Life & Wellbeing"

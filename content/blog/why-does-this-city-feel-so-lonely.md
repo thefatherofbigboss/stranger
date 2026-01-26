@@ -2,7 +2,7 @@
 title: "Why Does This City Feel So Lonely?"
 description: "Surrounded by millions yet feeling unseen—urban loneliness is one of the biggest emotional paradoxes of modern Indian cities. This deep dive explores why cities feel lonely and what it means to live, love, and belong in them."
 excerpt: "The city is full, noisy, alive—yet something feels missing. This is a story about urban loneliness, emotional disconnection, and why so many people feel alone in the middle of everything."
-author: "Stranger Mingle Team"
+author: "Ashwini"
 date: 2026-01-19
 readTime: "9 min read"
 category: "Urban Life & Emotions"

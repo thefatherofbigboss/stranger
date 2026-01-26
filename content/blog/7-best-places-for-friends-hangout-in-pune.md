@@ -4,9 +4,9 @@ description: "Discover the best hangout spots in Pune for friends—from cafes a
 excerpt: "Looking for the perfect place to hang out with friends in Pune? From vibrant cafes to scenic spots and late-night haunts, here are the 7 best places where Pune's social life thrives."
 author: "Trishul D N"
 date: 2026-01-20
-readTime: "8–10 minutes"
+readTime: "10 minutes"
 category: "Travel & Lifestyle"
-image: "https://res.cloudinary.com/dt3rse8bg/image/upload/v1768619953/group-young-successful-people-vacation-friends-enjoying-game-lake-positive-emotions_hycidp.jpg"
+image: "https://res.cloudinary.com/dt3rse8bg/image/upload/v1768618560/pexels-thepataskar-34234571_bsk7lg.jpg"
 featured: false
 tags: ["Pune Hangout Spots", "Pune Cafes", "Friends Meetup", "Pune Nightlife", "Weekend Plans Pune"]
 keywords: ["best hangout places in Pune", "friends hangout spots Pune", "cafes in Pune for groups", "where to hang out in Pune", "Pune weekend places", "cheap hangout places Pune"]

@@ -9,8 +9,8 @@ import SocialLinks from "@/components/SocialLinks";
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: "Stranger Mingle — Meetups & Events in Pune, Mumbai, Bengaluru",
-  description: "Curated stranger meetups, friendship groups, and events in Pune, Mumbai & Bengaluru. Small groups. Safe. Book tickets now.",
+  title: "Stranger Mingle — Meetups & Events in Pune, Hyderabad, Bengaluru",
+  description: "Curated stranger meetups, friendship groups, and events in Pune, Hyderabad & Bengaluru. Small groups. Safe.",
 };
 
 export default async function Home() {
@@ -43,7 +43,7 @@ export default async function Home() {
           {/* Content */}
           <div className="relative z-10 w-full max-w-4xl mx-auto">
             <span className="px-4 py-2 rounded-full bg-blue-50/90 backdrop-blur-sm border border-blue-100 text-sm font-medium text-blue-600 inline-block mb-6 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100">
-              👋 New in Pune? Alone this weekend?
+              Zero harassment policy, Safe space for everyone!
             </span>
             <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white mb-6 leading-tight max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200 drop-shadow-lg">
               Make new Friends <br />Instantly <br />
@@ -68,26 +68,6 @@ export default async function Home() {
               <p className="text-white/80 text-sm font-medium mb-4 uppercase tracking-widest">Follow Us</p>
               <SocialLinks />
             </div>
-          </div>
-        </section>
-
-        {/* Upcoming Events Section */}
-        <section id="events" className="w-full max-w-7xl mx-auto px-4 py-20 text-center">
-          <div className="mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Upcoming Meetups</h2>
-            <p className="text-gray-600 max-w-xl mx-auto">Join a group this weekend. First-timers welcome; come alone (most people do)!</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {events.slice(0, 3).map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Link href="/events" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors">
-              View all events <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </Link>
           </div>
         </section>
 
@@ -186,26 +166,73 @@ export default async function Home() {
         </section>
 
         {/* Testimonial / Social Proof */}
-        <section className="w-full max-w-5xl mx-auto px-4 py-20 text-center">
-          <h2 className="text-2xl font-semibold text-gray-500 mb-10 tracking-wide uppercase">Trusted by 500+ People</h2>
-          <div className="grid md:grid-cols-2 gap-8 text-left">
-            <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">&quot;Moved to Pune for my job and knew literally no one. Went to the Sunday Chai event thinking it would be awkward, but met 3 people who are now my regular trekking group. Best decision ever.&quot;</p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">R</div>
-                <div>
-                  <div className="font-bold text-gray-900">Rishikesh Shekade</div>
-                  <div className="text-xs text-gray-500">Software Engineer, Hinjewadi</div>
+        <section className="w-full py-20 text-center" style={{ backgroundColor: '#ffe2a9ff' }}>
+          <div className="max-w-5xl mx-auto px-4">
+            <h2 className="text-4xl font-semibold text-gray-800 mb-10 tracking-wide uppercase">Trusted by Indians</h2>
+            <div className="grid md:grid-cols-3 gap-8 text-left">
+              <div className="flex flex-col">
+                <div className="relative w-full aspect-square md:aspect-video">
+                  <Image
+                    src="/images/suraj-bhansingh.png"
+                    alt="Suraj Bhan Singh testimonial"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    unoptimized={true}
+                  />
+                </div>
+                <div className="bg-pink-100 p-8 rounded-2xl border border-gray-200 shadow-sm h-full flex flex-col">
+                  <p className="text-lg text-gray-700 mb-6 leading-relaxed flex-grow">&quot;I joined this group with my friend and initially we were just 2 of us. But slowly we started meeting new people and now we have a group of 10-15 people who regularly hang out together. It's a great way to meet new people and make friends.&quot;</p>
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <div className="font-bold text-gray-900">Suraj Bhan Singh</div>
+                      <div className="text-xs text-gray-500">Software Engineer, Wakad</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">&quot;Apps just weren&apos;t working for me. I wanted to meet people naturally. The board game night was so much fun, and I didn&apos;t have to worry about forcing conversation.&quot;</p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold">P</div>
-                <div>
-                  <div className="font-bold text-gray-900">Anuradha</div>
-                  <div className="text-xs text-gray-500">Student, Symbiosis</div>
+
+              <div className="flex flex-col">
+                <div className="relative w-full aspect-square md:aspect-video">
+                  <Image
+                    src="/images/anuradha.png"
+                    alt="Anuradha testimonial"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    unoptimized={true}
+                  />
+                </div>
+                <div className="bg-blue-200 p-8 rounded-2xl border border-gray-200 shadow-sm h-full flex flex-col">
+                  <p className="text-lg text-gray-700 mb-6 leading-relaxed flex-grow">&quot;I met Trishul through my another friend and now he is my good friend. I wanted to meet people naturally. The board game night was so much fun, and I didn't have to worry about forcing conversation.&quot;</p>
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <div className="font-bold text-gray-900">Anuradha</div>
+                      <div className="text-xs text-gray-500">IT Engineer, Hinjewadi</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col">
+                <div className="relative w-full aspect-square md:aspect-video">
+                  <Image
+                    src="/images/varsha.png"
+                    alt="Varsha testimonial"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    unoptimized={true}
+                  />
+                </div>
+                <div className="bg-green-200 p-8 rounded-2xl border border-gray-200 shadow-sm h-full flex flex-col">
+                  <p className="text-lg text-gray-700 mb-6 leading-relaxed flex-grow">&quot;I&apos;m working in Bengaluru since last 5 years and i haven&apos;t met many people. This group helped me to connect with new people and make friends.&quot;</p>
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <div className="font-bold text-gray-900">Varsha Sundaram</div>
+                      <div className="text-xs text-gray-500">Bengaluru, India</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -218,18 +245,95 @@ export default async function Home() {
             <div className="max-w-2xl">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">A Community Built on Trust</h2>
               <p className="text-gray-600 text-lg">
-                We verify every member to keep our events safe and comfortable. We have a zero-tolerance policy for harassment. Our goal is to create the safest space in Pune to meet strangers.
+                We verify every member to keep our events safe and comfortable. We have a zero-tolerance policy for harassment. Our goal is to create the safest spaces in India to meet strangers.
               </p>
             </div>
-            <a href="/about" className="whitespace-nowrap px-8 py-4 bg-gray-900 text-white hover:bg-gray-800 rounded-xl font-bold text-lg transition-colors">
+            <a href="/safety-guidelines" className="whitespace-nowrap px-8 py-4 bg-gray-900 text-white hover:bg-gray-800 rounded-xl font-bold text-lg transition-colors">
               Read Our Guidelines
             </a>
           </div>
         </section>
 
-        {/* Recent Blog Posts */}
-        <section className="w-full max-w-7xl mx-auto px-4 py-20">
-          <RecentPosts limit={4} />
+
+        {/* Upcoming Events Section */}
+        <section id="events" className="w-full max-w-7xl mx-auto px-4 py-20 text-center">
+          <div className="mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Upcoming Meetups</h2>
+            <p className="text-gray-600 max-w-xl mx-auto">Join a group this weekend. First-timers welcome; come alone (most people do)!</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {events.slice(0, 3).map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link href="/events" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors">
+              View all events <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </Link>
+          </div>
+        </section>
+
+
+        {/* FAQs Section */}
+        <section className="w-full max-w-4xl mx-auto px-4 py-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 text-center">Frequently Asked Questions</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Quick answers to help you get started with building real friendships.</p>
+          </div>
+          <div className="space-y-4">
+            <details className="group bg-white border border-gray-200 rounded-2xl p-6 transition-all hover:border-blue-300">
+              <summary className="font-bold text-lg text-gray-900 cursor-pointer list-none flex items-center justify-between">
+                What is Stranger Mingle and how does it work?
+                <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <p className="text-gray-600 mt-4 leading-relaxed">
+                Stranger Mingle is a community platform for making real friends through organized weekend events in Indian cities. Browse events, register, and just show up – we handle the introductions and ice-breakers to ensure you have a great time and make genuine connections.
+              </p>
+            </details>
+            <details className="group bg-white border border-gray-200 rounded-2xl p-6 transition-all hover:border-blue-300">
+              <summary className="font-bold text-lg text-gray-900 cursor-pointer list-none flex items-center justify-between">
+                Is Stranger Mingle safe for women?
+                <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <p className="text-gray-600 mt-4 leading-relaxed">
+                Absolutely. We have a zero-tolerance policy for harassment and maintain strict safety protocols. All participants are verified, events are held in public locations, and our organizers are trained to ensure a safe and comfortable environment for everyone.
+              </p>
+            </details>
+            <details className="group bg-white border border-gray-200 rounded-2xl p-6 transition-all hover:border-blue-300">
+              <summary className="font-bold text-lg text-gray-900 cursor-pointer list-none flex items-center justify-between">
+                How much do events cost?
+                <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <p className="text-gray-600 mt-4 leading-relaxed">
+                Most events range from ₹149 to ₹599. These fees go directly toward supporting the platform, booking venues, and organizing activities. We keep it sustainable and community-focused rather than profit-driven.
+              </p>
+            </details>
+            <details className="group bg-white border border-gray-200 rounded-2xl p-6 transition-all hover:border-blue-300">
+              <summary className="font-bold text-lg text-gray-900 cursor-pointer list-none flex items-center justify-between">
+                Who attends these events?
+                <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <p className="text-gray-600 mt-4 leading-relaxed">
+                Our members are mostly young professionals, students, and people new to the city looking for platonic friendships. Whether you&apos;re an introvert or extrovert, you&apos;ll find a welcoming space. About 80% of people show up alone!
+              </p>
+            </details>
+            <details className="group bg-white border border-gray-200 rounded-2xl p-6 transition-all hover:border-blue-300">
+              <summary className="font-bold text-lg text-gray-900 cursor-pointer list-none flex items-center justify-between">
+                Which cities are you present in?
+                <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <p className="text-gray-600 mt-4 leading-relaxed">
+                We are currently active in Pune and expanding rapidly to Mumbai, Hyderabad, Bengaluru, and Delhi. Keep an eye on our events page for meetups in your city!
+              </p>
+            </details>
+          </div>
+          <div className="mt-12 text-center">
+            <Link href="/faqs" className="text-blue-600 font-bold hover:underline">
+              View all FAQs →
+            </Link>
+          </div>
         </section>
 
       </main>
@@ -259,6 +363,52 @@ export default async function Home() {
                 "name": "Home",
                 "item": "https://www.strangermingle.com"
               }]
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What is Stranger Mingle and how does it work?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Stranger Mingle is a community platform for making real friends through organized weekend events in Indian cities. Browse events, register, and just show up – we handle the introductions and ice-breakers to ensure you have a great time and make genuine connections."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Is Stranger Mingle safe for women?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely. We have a zero-tolerance policy for harassment and maintain strict safety protocols. All participants are verified, events are held in public locations, and our organizers are trained to ensure a safe and comfortable environment for everyone."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How much do events cost?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Most events range from ₹149 to ₹599. These fees go directly toward supporting the platform, booking venues, and organizing activities. We keep it sustainable and community-focused rather than profit-driven. It can vary based on the event and location."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Who attends these events?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our members are mostly young professionals, students, and people new to the city looking for platonic friendships. Whether you're an introvert or extrovert, you'll find a welcoming space. About 80% of people show up alone!"
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Which cities are you present in?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We are currently active in Pune and expanding rapidly to Mumbai, Hyderabad, Bengaluru, and Delhi. Keep an eye on our events page for meetups in your city!"
+                  }
+                }
+              ]
             }
           ]),
         }}

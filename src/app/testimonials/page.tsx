@@ -1,7 +1,7 @@
 export default function Testimonials() {
     const testimonials = [
         {
-            name: "Rishikesh Shekade",
+            name: "Suraj Bhan Singh",
             location: "Pune, India",
             text: "I joined this group with my friend and initially we were just 2 of us. But slowly we started meeting new people and now we have a group of 10-15 people who regularly hang out together. It's a great way to meet new people and make friends.",
             rating: 4.5
