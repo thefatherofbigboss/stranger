@@ -5,18 +5,18 @@ import EventCard from "@/components/EventCard";
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-    title: "Stranger Meetup Events in Pune, Mumbai & Bengaluru | Make Real Friends Offline",
-    description: "Community-driven, curated stranger meetups for real conversations and meaningful friendships. Safe, verified offline events every weekend. No dating. No selling.",
+    title: "Weekend Stranger Meetup Events in Pune, Hyderabad & Bengaluru | Make Real Friends Offline",
+    description: "Community-driven, curated weekend stranger meetups for real conversations and meaningful friendships. Safe, verified offline events every weekend. No dating. No selling.",
     keywords: "stranger meetup events India, social meetups Pune, networking events Mumbai, make friends Delhi, weekend events Bangalore, stranger networking India, offline social events, friendship meetups, young professionals events, singles social events India, meet new people events, IT professionals meetups, community events India",
     authors: [{ name: "Stranger Mingle Team" }],
     creator: "Stranger Mingle",
     publisher: "Stranger Mingle",
     category: "Social Events & Networking",
     classification: "Events and Community Networking",
-    
+
     openGraph: {
-        title: "Stranger Meetup Events in Pune, Mumbai & Bengaluru | Make Real Friends Offline",
-        description: "Community-driven, curated stranger meetups for real conversations and meaningful friendships. Safe, verified offline events every weekend. No dating. No selling.",
+        title: "Weekend Stranger Meetup Events in Pune, Hyderabad & Bengaluru | Make Real Friends Offline",
+        description: "Community-driven, curated weekend stranger meetups for real conversations and meaningful friendships. Safe, verified offline events every weekend. No dating. No selling.",
         type: 'website',
         url: 'https://www.strangermingle.com/events',
         siteName: 'Stranger Mingle',
@@ -26,24 +26,24 @@ export const metadata: Metadata = {
                 url: 'https://www.strangermingle.com/og-events-image.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'Stranger Mingle Events - Social Meetups and Networking Events Across India',
+                alt: 'Stranger Mingle Events - Weekend Social Meetups and Networking Events Across India',
             }
         ],
     },
-    
+
     twitter: {
         card: 'summary_large_image',
-        title: "Stranger Meetup Events: Social Mixers, Treks & Networking | Pune, Mumbai & Bengaluru",
+        title: "Weekend Stranger Meetup Events: Social Mixers, Treks & Networking | Pune, Hyderabad & Bengaluru",
         description: "Community-driven, curated stranger meetups for real conversations and meaningful friendships. Safe, verified offline events every weekend. No dating. No selling.",
         images: ['https://www.strangermingle.com/twitter-events-card.jpg'],
         site: '@StrangerMingle',
         creator: '@StrangerMingle',
     },
-    
+
     alternates: {
         canonical: 'https://www.strangermingle.com/events',
     },
-    
+
     robots: {
         index: true,
         follow: true,
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
             'max-snippet': -1,
         },
     },
-    
+
     other: {
         'geo.region': 'IN',
         'geo.placename': 'India',
@@ -74,7 +74,7 @@ export default async function EventsPage() {
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_50%)]"></div>
                 </div>
-                
+
                 <div className="relative max-w-7xl mx-auto text-center">
                     <div className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 mb-6">
                         <span className="text-white/90 text-sm font-semibold">🎉 Weekly Events</span>
@@ -99,7 +99,7 @@ export default async function EventsPage() {
                                 </div>
                             ))}
                         </div>
-                        
+
                         {/* Stats Bar */}
                         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm text-center">
@@ -158,8 +158,8 @@ export default async function EventsPage() {
                         {
                             "@context": "https://schema.org",
                             "@type": "CollectionPage",
-                            "name": "Stranger Meetup Events in India",
-                            "description": "Browse upcoming stranger meetup and social networking events across Pune, Mumbai, Delhi, and Bangalore",
+                            "name": "Weekend Stranger Meetups and Events in India",
+                            "description": "Browse upcoming weekend stranger meetup and social networking events across Pune, Mumbai, Hyderabad, and Bangalore",
                             "url": "https://www.strangermingle.com/events",
                             "publisher": {
                                 "@type": "Organization",
@@ -185,7 +185,7 @@ export default async function EventsPage() {
                                     "startDate": `${event.start_date}T${event.start_time}`,
                                     "endDate": `${event.end_date}T${event.end_time}`,
                                     "eventStatus": "https://schema.org/EventScheduled",
-                                    "eventAttendanceMode": event.event_type === 'online' 
+                                    "eventAttendanceMode": event.event_type === 'online'
                                         ? "https://schema.org/OnlineEventAttendanceMode"
                                         : "https://schema.org/OfflineEventAttendanceMode",
                                     "image": event.image_url || undefined,
@@ -212,8 +212,8 @@ export default async function EventsPage() {
                                         "url": `https://www.strangermingle.com/events/${event.slug || event.id}`,
                                         "price": event.regular_price === 0 ? "0" : (event.discounted_price || event.regular_price).toString(),
                                         "priceCurrency": "INR",
-                                        "availability": (event.available_seats - event.booked_spots) > 0 
-                                            ? "https://schema.org/InStock" 
+                                        "availability": (event.available_seats - event.booked_spots) > 0
+                                            ? "https://schema.org/InStock"
                                             : "https://schema.org/SoldOut",
                                         "validFrom": event.created_at
                                     },

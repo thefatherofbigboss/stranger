@@ -108,7 +108,7 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-gray-900 mb-1">We're in India</h3>
-                                    <p className="text-gray-600">Serving Pune, Mumbai, Bangalore, and more cities.</p>
+                                    <p className="text-gray-600">Serving Pune, Hyderabad, Mumbai, Bangalore, and more cities.</p>
                                 </div>
                             </div>
                         </div>

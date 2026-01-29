@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Stranger Mingle - Local Events & Meetups for Making Friends",
+    default: "Stranger Mingle - Weekend Events & Meetups for Making Friends",
     template: "%s | Stranger Mingle"
   },
   description: "Join India's most active community for making friends. Weekly offline events including treks, board game nights, chai circles, and heritage walks. No apps, just real connection.",
@@ -35,21 +35,21 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: 'https://www.strangermingle.com',
     siteName: 'Stranger Mingle',
-    title: 'Stranger Mingle - Stranger Meetups & Local Events for Making new Friends',
-    description: "Join India's most active community for stranger meetups and local events. Make new friends instantly.",
+    title: 'Stranger Mingle - Weekend Stranger Meetups & Local Events for Making new Friends',
+    description: "Join India's most active community for weekend stranger meetups and local events. Make new friends instantly.",
     images: [
       {
         url: "/images/og-images/og-image-default.webp",
         width: 1200,
         height: 630,
-        alt: "Stranger Mingle - Social Meetups & Events",
+        alt: "Stranger Mingle - Weekend Social Meetups & Events",
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Stranger Mingle - Stranger Meetups & Local Events for Making new Friends',
-    description: "Join India's most active community for Stranger Meetups to make new friends instantly.",
+    title: 'Stranger Mingle - Weekend Stranger Meetups & Local Events for Making new Friends',
+    description: "Join India's most active community for weekend Stranger Meetups to make new friends instantly.",
     images: ["/images/og-images/og-image-default.webp"],
     creator: '@strangermingle',
   },

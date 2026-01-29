@@ -9,8 +9,8 @@ import { MapPin, Users, ShieldCheck, ArrowRight } from "lucide-react";
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-    title: "Stranger Mingle Bengaluru - Meetups, Events & Making Friends Instantly",
-    description: "Join curated stranger meetups and events in Bengaluru. Meet new people in Viman Nagar, Baner, Hinjewadi, and Koregaon Park. Small groups. Safe. Fun.",
+    title: "Weekend Meetups, Events for Making Friends Instantly",
+    description: "Weekend stranger meetups and events in Bengaluru. Meet new people in Viman Nagar, Baner, Hinjewadi, and Koregaon Park. Small groups. Safe. Fun.",
     alternates: {
         canonical: "https://www.strangermingle.com/Bengaluru",
     }

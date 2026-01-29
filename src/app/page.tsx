@@ -9,8 +9,8 @@ import SocialLinks from "@/components/SocialLinks";
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: "Stranger Mingle — Meetups & Events in Pune, Hyderabad, Bengaluru",
-  description: "Curated stranger meetups, friendship groups, and events in Pune, Hyderabad & Bengaluru. Small groups. Safe.",
+  title: "Weekend Meetups & Events in Pune, Hyderabad, Bengaluru",
+  description: "Join weekend events, stranger meetups and friendship groups in Pune, Hyderabad & Bengaluru. Small groups. Safe.",
 };
 
 export default async function Home() {
@@ -46,9 +46,9 @@ export default async function Home() {
               Zero harassment policy, Safe space for everyone!
             </span>
             <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white mb-6 leading-tight max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200 drop-shadow-lg">
-              Make new Friends <br />Instantly <br />
+              Weekend <br /> Events and MeetUps <br />
               <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-300 via-purple-300 to-pink-300">
-                Stranger Meetups & Events
+                For Making New Friends
               </span>
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 drop-shadow-md">
@@ -78,7 +78,7 @@ export default async function Home() {
               Why Stranger Mingle Exists
             </h2>
             <p className="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-16">
-              We&apos;re solving a problem millions of Indians face: feeling lonely in a crowded city. Making friends after college shouldn&apos;t be this hard.
+              We&apos;re solving a problem millions of Indians face: feeling lonely in a crowded city. <br /> Making friends after college shouldn&apos;t be this hard.<br />
             </p>
 
             <div className="grid md:grid-cols-3 gap-8 sm:gap-12 mb-16">
