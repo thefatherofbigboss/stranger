@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Event, formatEventPrice, formatEventDate, formatEventTime } from '@/lib/events';
 import Image from 'next/image';
+import { sendGAEvent } from '@/lib/gtag';
 
 interface PaymentModalProps {
     isOpen: boolean;
@@ -82,6 +83,22 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
 
             // Handle free events - skip payment
             if (data.isFree) {
+                // Track free purchase
+                sendGAEvent({
+                    action: 'purchase',
+                    category: 'ecommerce',
+                    label: 'Free Event Booking',
+                    value: 0,
+                    currency: 'INR',
+                    transaction_id: data.paymentDetailId,
+                    items: [{
+                        item_id: event.id,
+                        item_name: event.event_name,
+                        price: 0,
+                        quantity: 1
+                    }]
+                });
+
                 setLoading(false);
                 onClose();
                 alert('Booking confirmed successfully! Your spot has been reserved.');
@@ -105,6 +122,16 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
                 console.warn('Instamojo configure not available, continuing with open():', configError);
             }
 
+            // Save transaction details for GA4 tracking on confirmation page
+            if (typeof window !== 'undefined') {
+                sessionStorage.setItem('pendingTransaction', JSON.stringify({
+                    amount: price,
+                    eventId: event.id,
+                    eventName: event.event_name,
+                    timestamp: Date.now()
+                }));
+            }
+
             window.Instamojo.open(data.longurl);
 
             // Rely on webhook as source of truth; inform user to await confirmation
@@ -122,7 +149,7 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
     return (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
             {/* Backdrop */}
-            <div 
+            <div
                 className="absolute inset-0 bg-black/60 backdrop-blur-sm"
                 onClick={onClose}
             />
@@ -146,7 +173,7 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
                         <h2 className="text-2xl font-bold text-gray-900 mb-4">
                             Complete Your Booking
                         </h2>
-                        
+
                         <div className="flex gap-4">
                             {event.image_url && (
                                 <div className="relative w-24 h-24 rounded-xl overflow-hidden shrink-0">
@@ -254,7 +281,7 @@ export default function PaymentModal({ isOpen, onClose, event }: PaymentModalPro
                             </button>
                         </div>
 
-                                <p className="text-xs text-gray-500 text-center">
+                        <p className="text-xs text-gray-500 text-center">
                             {price === 0 ? (
                                 'By confirming, you agree to our Terms & Conditions and Privacy Policy'
                             ) : (

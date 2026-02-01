@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { sendGAEvent } from "@/lib/gtag";
 
 interface SponsoredAdCardProps {
     url: string;
@@ -13,6 +16,12 @@ export default function SponsoredAdCard({ url, title, description }: SponsoredAd
             target="_blank"
             rel="noopener noreferrer sponsored"
             className="group block p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition-all bg-white"
+            onClick={() => sendGAEvent({
+                action: 'click',
+                category: 'sponsored_content',
+                label: `Ad: ${title}`,
+                value: 1 // Assigning a value to ad clicks can be useful
+            })}
         >
             <div className="flex items-start gap-3">
                 <div className="flex-1 min-w-0">

@@ -7,6 +7,7 @@ import Link from 'next/link';
 import PaymentModal from './PaymentModal';
 import ContactOrganizerModal from './ContactOrganizerModal';
 import SocialLinks from './SocialLinks';
+import { sendGAEvent } from '@/lib/gtag';
 
 interface EventDetailsPageProps {
     event: Event;
@@ -348,6 +349,13 @@ export default function EventDetailsPage({ event }: EventDetailsPageProps) {
 
                                 <button
                                     onClick={() => {
+                                        sendGAEvent({
+                                            action: 'click',
+                                            category: 'event_details',
+                                            label: isSoldOut ? `Sold Out: ${event.event_name}` : `Book: ${event.event_name}`,
+                                            value: event.discounted_price || event.regular_price
+                                        });
+
                                         if (isSoldOut) {
                                             setShowContactModal(true);
                                         } else {

@@ -4,6 +4,7 @@ import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { CheckCircle, ArrowRight, Calendar, MapPin } from 'lucide-react';
+import { sendGAEvent } from '@/lib/gtag';
 
 function BookingContent() {
     const searchParams = useSearchParams();
@@ -22,6 +23,34 @@ function BookingContent() {
         // Simulate processing delay for better UX (real verification happens via webhook)
         const timer = setTimeout(() => {
             setStatus('success');
+
+            // Track purchase if pending transaction exists
+            const pendingTx = sessionStorage.getItem('pendingTransaction');
+            if (pendingTx && paymentId) {
+                try {
+                    const { amount, eventId, eventName } = JSON.parse(pendingTx);
+
+                    sendGAEvent({
+                        action: 'purchase',
+                        category: 'ecommerce',
+                        label: 'Event Booking',
+                        value: Number(amount),
+                        currency: 'INR',
+                        transaction_id: paymentId,
+                        items: [{
+                            item_id: eventId,
+                            item_name: eventName,
+                            price: Number(amount),
+                            quantity: 1
+                        }]
+                    });
+
+                    // Clear storage to prevent duplicate tracking
+                    sessionStorage.removeItem('pendingTransaction');
+                } catch (e) {
+                    console.error('Error tracking purchase:', e);
+                }
+            }
         }, 2000);
 
         return () => clearTimeout(timer);

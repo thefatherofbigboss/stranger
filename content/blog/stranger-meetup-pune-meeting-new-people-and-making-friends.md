@@ -1,18 +1,18 @@
 ---
-title: "Stranger Meetup: Complete Guide to Meeting New People and Making Friends"
-description: "Discover the best stranger meetup events in Pune for working professionals. Learn how to attend social networking events, make genuine friends, and combat urban loneliness through face-to-face stranger meetups at popular venues across Koregaon Park, Hinjewadi, and Deccan."
-excerpt: "Pune's stranger meetup scene is revolutionising how working professionals combat loneliness and build genuine connections. From anonymous chat to real-life friendships, discover how thousands are transforming their social lives through organised stranger meetups every weekend."
-author: "Ashwini P"
+title: "Strangers Meetup: Complete Guide to Meeting New People and Making Friends"
+description: "Discover the best strangers meetup events in Pune for working professionals. Learn how to attend social networking events, make genuine friends, and combat urban loneliness through face-to-face strangers meetup at popular venues across Koregaon Park, Hinjewadi, and Deccan."
+excerpt: "Pune's strangers meetup scene is revolutionising how working professionals combat loneliness and build genuine connections. From anonymous chat to real-life friendships, discover how thousands are transforming their social lives through organised strangers meetup every weekend."
+author: "Trishul D N"
 date: "2026-01-01"
 readTime: "9 min read"
 category: "Lifestyle"
 image: "https://res.cloudinary.com/dt3rse8bg/image/upload/v1768885569/pexels-satya-nandigam-162270670-12967045_r0upt8.jpg"
 featured: false
-tags: ["Stranger Meetup", "Pune", "Social Networking", "Making Friends", "Events", "Pune", "Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Chennai"]
-keywords: "stranger meetup Pune, meet new people Pune, social events Pune for singles, networking events Pune, make friends Pune adults, stranger networking Pune, weekend meetups Pune, anonymous chat to real meetup, combat loneliness Pune, young professionals social groups Pune, face to face meetups India, singles events Pune, friendship meetups Koregaon Park"
+tags: ["Strangers Meetup", "Pune", "Social Networking", "Making Friends", "Events", "Pune", "Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Chennai"]
+keywords: "strangers meetup Pune, meet new people Pune, social events Pune for singles, networking events Pune, make friends Pune adults, stranger networking Pune, weekend meetups Pune, anonymous chat to real meetup, combat loneliness Pune, young professionals social groups Pune, face to face meetups India, singles events Pune, friendship meetups Koregaon Park"
 ---
 
-In a city where over 5 million people live yet urban loneliness remains rampant, stranger meetups have emerged as Pune's answer to the social isolation epidemic affecting working professionals. Every weekend, hundreds gather at cafes, restaurants, and social venues across the city—not for business networking or formal events, but simply to meet strangers and potentially build lasting friendships.
+In a city where over 5 million people live yet urban loneliness remains rampant, strangers meetup have emerged as Pune's answer to the social isolation epidemic affecting working professionals. Every weekend, hundreds gather at cafes, restaurants, and social venues across the city—not for business networking or formal events, but simply to meet strangers and potentially build lasting friendships.
 
 ## Understanding the Stranger Meetup Revolution in Pune
 

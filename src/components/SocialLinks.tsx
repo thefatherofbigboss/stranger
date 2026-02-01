@@ -1,6 +1,7 @@
 'use client';
 
 import { Instagram, Youtube, Twitter, Linkedin, Facebook } from 'lucide-react';
+import { sendGAEvent } from "@/lib/gtag";
 
 const socialLinks = [
     {
@@ -52,6 +53,11 @@ export default function SocialLinks({ className = '', variant = 'default' }: { c
                         rel="noopener noreferrer"
                         className="text-gray-400 hover:text-gray-600 transition-colors"
                         aria-label={`Follow us on ${link.name}`}
+                        onClick={() => sendGAEvent({
+                            action: 'click',
+                            category: 'social_link',
+                            label: `Footer: ${link.name}`
+                        })}
                     >
                         <link.icon className="w-5 h-5" />
                     </a>
@@ -70,6 +76,11 @@ export default function SocialLinks({ className = '', variant = 'default' }: { c
                     rel="noopener noreferrer"
                     className={`w-12 h-12 flex items-center justify-center rounded-full ${link.bg} ${link.color} transition-transform hover:scale-110 shadow-sm`}
                     aria-label={`Follow us on ${link.name}`}
+                    onClick={() => sendGAEvent({
+                        action: 'click',
+                        category: 'social_link',
+                        label: `Main: ${link.name}`
+                    })}
                 >
                     <link.icon className="w-6 h-6" />
                 </a>
