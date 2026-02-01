@@ -173,7 +173,7 @@ export function verifyInstamojoSignature({
     signatureHeader?: string | null;
     salt: string;
     mac?: string | null;
-    parsedBody?: Record<string, any>;
+    parsedBody?: Record<string, unknown>;
 }): boolean {
     // Prefer header-based signature when present (newer flow)
     if (signatureHeader) {
@@ -189,7 +189,7 @@ export function verifyInstamojoSignature({
         const macInput = Object.keys(parsedBody)
             .filter((key) => key !== 'mac')
             .sort()
-            .map((key) => parsedBody[key])
+            .map((key) => String(parsedBody[key]))
             .join('|');
 
         const expectedMac = crypto
@@ -201,4 +201,25 @@ export function verifyInstamojoSignature({
     }
 
     return false;
+}
+
+export async function getPaymentRequestDetails(id: string): Promise<InstamojoPaymentRequest> {
+    const config = getEnvConfig();
+    const accessToken = await getAccessToken(config);
+
+    // Ensure baseUrl doesn't end with slash
+    const baseUrl = config.baseUrl.endsWith('/') ? config.baseUrl.slice(0, -1) : config.baseUrl;
+
+    const response = await fetch(`${baseUrl}/v2/payment_requests/${id}/`, {
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch payment request details: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
 }

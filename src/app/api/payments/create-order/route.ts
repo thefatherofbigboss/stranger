@@ -219,6 +219,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json(
                 {
                     error: 'Failed to create payment request',
+                    message: instaError?.message || 'Unknown error', // Expose message for quicker debugging
                     details: process.env.NODE_ENV === 'development' ? instaError?.message : undefined,
                 },
                 { status: 500 }

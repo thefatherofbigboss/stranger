@@ -15,45 +15,69 @@ function BookingContent() {
     const paymentRequestId = searchParams.get('payment_request_id');
 
     useEffect(() => {
-        if (!paymentId && !paymentRequestId) {
-            setStatus('failed');
+        if (!paymentId || !paymentRequestId) {
+            if (!paymentId && !paymentRequestId) {
+                setStatus('failed');
+            }
             return;
         }
 
-        // Simulate processing delay for better UX (real verification happens via webhook)
-        const timer = setTimeout(() => {
-            setStatus('success');
+        const verifyPayment = async () => {
+            try {
+                const response = await fetch('/api/payments/verify', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        paymentRequestId,
+                        paymentId,
+                    }),
+                });
 
-            // Track purchase if pending transaction exists
-            const pendingTx = sessionStorage.getItem('pendingTransaction');
-            if (pendingTx && paymentId) {
-                try {
-                    const { amount, eventId, eventName } = JSON.parse(pendingTx);
+                const data = await response.json();
 
-                    sendGAEvent({
-                        action: 'purchase',
-                        category: 'ecommerce',
-                        label: 'Event Booking',
-                        value: Number(amount),
-                        currency: 'INR',
-                        transaction_id: paymentId,
-                        items: [{
-                            item_id: eventId,
-                            item_name: eventName,
-                            price: Number(amount),
-                            quantity: 1
-                        }]
-                    });
+                if (response.ok && data.success) {
+                    setStatus('success');
 
-                    // Clear storage to prevent duplicate tracking
-                    sessionStorage.removeItem('pendingTransaction');
-                } catch (e) {
-                    console.error('Error tracking purchase:', e);
+                    // Track purchase
+                    const pendingTx = sessionStorage.getItem('pendingTransaction');
+                    if (pendingTx) {
+                        try {
+                            const { amount, eventId, eventName } = JSON.parse(pendingTx);
+
+                            sendGAEvent({
+                                action: 'purchase',
+                                category: 'ecommerce',
+                                label: 'Event Booking',
+                                value: Number(amount),
+                                currency: 'INR',
+                                transaction_id: paymentId,
+                                items: [{
+                                    item_id: eventId,
+                                    item_name: eventName,
+                                    price: Number(amount),
+                                    quantity: 1
+                                }]
+                            });
+
+                            // Clear storage
+                            sessionStorage.removeItem('pendingTransaction');
+                        } catch (e) {
+                            console.error('Error tracking purchase:', e);
+                        }
+                    }
+                } else {
+                    console.error('Payment verification failed:', data.error);
+                    setStatus('failed');
                 }
+            } catch (error) {
+                console.error('Error verifying payment:', error);
+                setStatus('failed');
             }
-        }, 2000);
+        };
 
-        return () => clearTimeout(timer);
+        verifyPayment();
     }, [paymentId, paymentRequestId]);
 
     if (status === 'failed') {

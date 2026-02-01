@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyInstamojoSignature } from '@/lib/instamojo';
 import { createServerClient } from '@/lib/supabaseClient';
-import { getEventById } from '@/lib/events';
+import { processPaymentSuccess } from '@/lib/payment-utils';
 
 export async function POST(request: NextRequest) {
     try {
@@ -94,101 +94,16 @@ export async function POST(request: NextRequest) {
 
         // Handle successful payment
         if (normalizedStatus === 'credit' || normalizedStatus === 'successful' || normalizedStatus === 'completed') {
-            // Find the payment_details record by instamojo_payment_request_id
-            const { data: paymentDetail, error: fetchError } = await supabase
-                .from('payment_details')
-                .select('*')
-                .eq('instamojo_payment_request_id', paymentRequestId)
-                .single();
+            const result = await processPaymentSuccess({
+                paymentRequestId,
+                paymentId,
+                amount
+            });
 
-            if (fetchError || !paymentDetail) {
-                console.error('Payment detail not found for payment request:', paymentRequestId);
+            if (!result.success) {
+                console.error('Payment processing failed in webhook:', result.error);
                 return NextResponse.json(
-                    { error: 'Payment detail not found' },
-                    { status: 404 }
-                );
-            }
-
-            // Check if already processed
-            if (paymentDetail.payment_status === 'completed') {
-            return NextResponse.json({ status: 'ok' });
-            }
-
-            // Verify amount matches
-            if (!Number.isNaN(amount) && Math.abs(paymentDetail.amount_paid - amount) > 0.01) {
-                console.error('Amount mismatch:', paymentDetail.amount_paid, amount);
-                return NextResponse.json(
-                    { error: 'Amount mismatch' },
-                    { status: 400 }
-                );
-            }
-
-            // Get event to check availability
-            const event = await getEventById(paymentDetail.event_id);
-            if (!event) {
-                console.error('Event not found for payment:', paymentDetail.event_id);
-                return NextResponse.json(
-                    { error: 'Event not found' },
-                    { status: 404 }
-                );
-            }
-
-            // Check availability before incrementing (double-check)
-            if (event.available_seats <= event.booked_spots) {
-                console.error('Event sold out, cannot complete payment:', paymentDetail.event_id);
-                // Update payment status to failed
-                await supabase
-                    .from('payment_details')
-                    .update({
-                        payment_status: 'failed',
-                        instamojo_payment_id: paymentId || null,
-                    })
-                    .eq('id', paymentDetail.id);
-                return NextResponse.json(
-                    { error: 'Event sold out' },
-                    { status: 400 }
-                );
-            }
-
-            // Atomically increment booked_spots using RPC function
-            const { data: incrementResult, error: rpcError } = await supabase.rpc(
-                'increment_booked_spots_safe',
-                {
-                    p_event_id: paymentDetail.event_id,
-                    p_spots: paymentDetail.spots_booked,
-                }
-            );
-
-            if (rpcError || !incrementResult) {
-                console.error('Failed to increment booked spots:', rpcError);
-                // Update payment status to failed
-                await supabase
-                    .from('payment_details')
-                    .update({
-                        payment_status: 'failed',
-                        instamojo_payment_id: paymentId || null,
-                    })
-                    .eq('id', paymentDetail.id);
-                return NextResponse.json(
-                    { error: 'Failed to book seats' },
-                    { status: 500 }
-                );
-            }
-
-            // Update payment_details with payment_id and status
-            const { error: updateError } = await supabase
-                .from('payment_details')
-                .update({
-                    payment_status: 'completed',
-                    instamojo_payment_id: paymentId || null,
-                    updated_at: new Date().toISOString(),
-                })
-                .eq('id', paymentDetail.id);
-
-            if (updateError) {
-                console.error('Error updating payment detail:', updateError);
-                return NextResponse.json(
-                    { error: 'Failed to update payment detail' },
+                    { error: result.error || 'Failed to process payment' },
                     { status: 500 }
                 );
             }
