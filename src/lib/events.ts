@@ -44,8 +44,6 @@ export interface PaymentDetail {
     spots_booked: number;
     amount_paid: number;
     payment_status: 'pending' | 'completed' | 'failed' | 'refunded';
-    razorpay_order_id: string | null;
-    razorpay_payment_id: string | null;
     instamojo_payment_request_id?: string | null;
     instamojo_payment_id?: string | null;
     created_at: string;
@@ -291,8 +289,6 @@ export async function createBooking(bookingData: {
     spots_booked: number;
     amount_paid: number;
     payment_status?: 'pending' | 'completed' | 'failed' | 'refunded';
-    razorpay_order_id?: string | null;
-    razorpay_payment_id?: string | null;
     instamojo_payment_request_id?: string | null;
     instamojo_payment_id?: string | null;
 }): Promise<PaymentDetail | null> {
@@ -308,8 +304,6 @@ export async function createBooking(bookingData: {
             spots_booked: bookingData.spots_booked,
             amount_paid: bookingData.amount_paid,
             payment_status: bookingData.payment_status || 'pending',
-            razorpay_order_id: bookingData.razorpay_order_id || null,
-            razorpay_payment_id: bookingData.razorpay_payment_id || null,
             instamojo_payment_request_id: bookingData.instamojo_payment_request_id || null,
             instamojo_payment_id: bookingData.instamojo_payment_id || null,
         })

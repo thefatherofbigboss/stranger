@@ -156,9 +156,7 @@ export async function POST(request: NextRequest) {
                 guest_phone: cleanedPhone,
                 spots_booked: 1, // Default to 1 spot per booking
                 amount_paid: 0,
-                payment_status: 'completed',
-                razorpay_order_id: null,
-                razorpay_payment_id: null,
+                payment_status: 'completed', // Free events are instantly completed
             });
 
             if (!paymentDetail) {
@@ -172,11 +170,11 @@ export async function POST(request: NextRequest) {
                 );
             }
 
-            // Update event booked_spots for free events
-            const { error: updateError } = await supabase
-                .from('events')
-                .update({ booked_spots: event.booked_spots + 1 })
-                .eq('id', eventId);
+            // Update event booked_spots for free events using safe RPC
+            const { error: updateError } = await supabase.rpc('increment_booked_spots_safe', {
+                p_event_id: eventId,
+                p_spots: 1
+            });
 
             if (updateError) {
                 console.error('Failed to update booked_spots:', updateError);
@@ -236,7 +234,6 @@ export async function POST(request: NextRequest) {
             amount_paid: price,
             payment_status: 'pending',
             instamojo_payment_request_id: paymentRequest.id,
-            razorpay_payment_id: null,
         });
 
         if (!paymentDetail) {
