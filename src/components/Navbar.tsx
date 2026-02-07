@@ -49,6 +49,9 @@ export default function Navbar() {
                         <Link href="/hyderabad" className="hover:text-black transition-colors hidden md:block">
                             Hyderabad
                         </Link>
+                        <Link href="/live-online-games" className="hover:text-black transition-colors hidden sm:block">
+                            Games
+                        </Link>
                         <Link href="/events" className="hover:text-black transition-colors hidden sm:block">
                             Events
                         </Link>
@@ -137,6 +140,13 @@ export default function Navbar() {
                             onClick={closeMobileMenu}
                         >
                             Hyderabad
+                        </Link>
+                        <Link
+                            href="/live-online-games"
+                            className="px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-black rounded-lg transition-colors"
+                            onClick={closeMobileMenu}
+                        >
+                            Games
                         </Link>
                         <Link
                             href="/events"
