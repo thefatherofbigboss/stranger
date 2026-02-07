@@ -12,10 +12,12 @@ export async function processPaymentSuccess({
     paymentRequestId,
     paymentId,
     amount,
+    userId,
 }: {
     paymentRequestId: string;
     paymentId: string;
     amount: number;
+    userId?: string | null;
 }): Promise<PaymentProcessingResult> {
     const supabase = createServerClient();
 
@@ -89,6 +91,7 @@ export async function processPaymentSuccess({
             .update({
                 payment_status: 'completed',
                 instamojo_payment_id: paymentId || null,
+                user_id: userId || paymentDetail.user_id, // Update user_id if provided
                 updated_at: new Date().toISOString(),
             })
             .eq('id', paymentDetail.id)

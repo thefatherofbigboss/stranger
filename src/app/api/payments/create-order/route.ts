@@ -128,15 +128,17 @@ export async function POST(request: NextRequest) {
             ? event.discounted_price
             : event.regular_price;
 
-        // Create or update user profile
+        // Get current user session if available
         const supabase = createServerClient();
-        // For now, we'll use null for user_id since we're not implementing auth yet
-        // In the future, you can get user_id from the session
+        const { data: { user } } = await supabase.auth.getUser();
+        const userId = user?.id || null;
+
+        // Create or update user profile
         const userProfile = await createOrUpdateUserProfile({
             phone: cleanedPhone,
             name: sanitizedName,
             email: sanitizedEmail,
-            user_id: null, // TODO: Get from auth session when implemented
+            user_id: userId,
         });
 
         if (!userProfile) {
@@ -151,7 +153,7 @@ export async function POST(request: NextRequest) {
             // Create payment_details record with status 'completed' for free events
             const paymentDetail = await createBooking({
                 event_id: eventId,
-                user_id: null, // TODO: Get from auth session when implemented
+                user_id: userId,
                 guest_email: sanitizedEmail,
                 guest_phone: cleanedPhone,
                 spots_booked: 1, // Default to 1 spot per booking
@@ -227,7 +229,7 @@ export async function POST(request: NextRequest) {
         // Create payment_details record with status 'pending'
         const paymentDetail = await createBooking({
             event_id: eventId,
-            user_id: null, // TODO: Get from auth session when implemented
+            user_id: userId,
             guest_email: sanitizedEmail,
             guest_phone: cleanedPhone,
             spots_booked: 1, // Default to 1 spot per booking

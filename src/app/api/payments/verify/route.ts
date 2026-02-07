@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPaymentRequestDetails } from '@/lib/instamojo';
 import { processPaymentSuccess } from '@/lib/payment-utils';
+import { createServerClient } from '@/lib/supabaseClient';
 
 export async function POST(request: NextRequest) {
     try {
@@ -26,13 +27,18 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        // Get current user session if available
+        const supabase = createServerClient();
+        const { data: { user } } = await supabase.auth.getUser();
+
         // Verify amount and process success logic
         const amount = parseFloat(paymentRequest.amount);
 
         const result = await processPaymentSuccess({
             paymentRequestId,
             paymentId,
-            amount
+            amount,
+            userId: user?.id || null
         });
 
         if (!result.success) {
