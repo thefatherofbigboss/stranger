@@ -20,9 +20,9 @@ export default function HeroButtons() {
     };
 
     return (
-        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center animate-in fade-in slide-in-from-bottom-4 duration-500 delay-400 mb-10">
+        <div className="flex flex-col sm:flex-row gap-4 sm:w-auto justify-center animate-in fade-in slide-in-from-bottom-4 duration-500 delay-400 mb-10">
             <a
-                href="#events"
+                href="/events"
                 onClick={handleEventsClick}
                 className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-500/25 hover:scale-105"
             >

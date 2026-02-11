@@ -33,7 +33,10 @@ export default function Navbar() {
                     </Link>
 
                     {/* Desktop Menu */}
-                    <div className="flex items-center gap-4 sm:gap-6 text-sm font-medium text-gray-600">
+                    <div className="flex items-center gap-4 sm:gap-6 text-sm font-semibold text-gray-600">
+                        <Link href="/events" className="hover:text-black transition-colors hidden sm:block">
+                            Events
+                        </Link>
                         <Link href="/pune" className="hover:text-black transition-colors hidden md:block">
                             Pune
                         </Link>
@@ -51,9 +54,6 @@ export default function Navbar() {
                         </Link>
                         <Link href="/live-online-games" className="hover:text-black transition-colors hidden sm:block">
                             Games
-                        </Link>
-                        <Link href="/events" className="hover:text-black transition-colors hidden sm:block">
-                            Events
                         </Link>
                         <Link href="/about" className="hover:text-black transition-colors hidden sm:block">
                             About
@@ -107,6 +107,13 @@ export default function Navbar() {
                 <div className="flex flex-col h-full py-6 px-6 overflow-y-auto">
                     <div className="flex flex-col gap-2 mb-6">
                         <Link
+                            href="/events"
+                            className="px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-black rounded-lg transition-colors"
+                            onClick={closeMobileMenu}
+                        >
+                            Events
+                        </Link>
+                        <Link
                             href="/pune"
                             className="px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-black rounded-lg transition-colors"
                             onClick={closeMobileMenu}
@@ -147,13 +154,6 @@ export default function Navbar() {
                             onClick={closeMobileMenu}
                         >
                             Games
-                        </Link>
-                        <Link
-                            href="/events"
-                            className="px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-black rounded-lg transition-colors"
-                            onClick={closeMobileMenu}
-                        >
-                            Events
                         </Link>
                         <Link
                             href="/about"

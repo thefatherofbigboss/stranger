@@ -26,18 +26,6 @@ const teamMembers = [
         social: {
             linkedin: "https://www.linkedin.com/company/strangermingle",
         }
-    },
-    {
-        name: "Meghana",
-        role: "Co-Founder",
-        image: "/images/team/meghana.jpeg",
-        bio: "Meghana transforms ideas into unforgettable experiences, bringing creativity, precision, and passion to every detail. She doesn't just plan events, she creates moments that people remember long after the celebration ends.",
-        icon: <ShieldAlert className="w-5 h-5" />,
-        color: "text-red-600",
-        bgColor: "bg-red-50",
-        social: {
-            linkedin: "https://www.linkedin.com/in/meghana-megha-2a0804296",
-        }
     }
 ];
 

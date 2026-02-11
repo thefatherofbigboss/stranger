@@ -10,7 +10,7 @@ import HeroButtons from "@/components/HeroButtons";
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: "Weekend Meetups & Events in Pune, Hyderabad, Bengaluru",
+  title: "Stranger Meetups & Events in Pune, Hyderabad, Bengaluru",
   description: "Join weekend events, stranger meetups and friendship groups in Pune, Hyderabad & Bengaluru. Small groups. Safe.",
 };
 
@@ -32,7 +32,7 @@ export default async function Home() {
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="https://res.cloudinary.com/dt3rse8bg/image/upload/v1768619953/group-young-successful-people-vacation-friends-enjoying-game-lake-positive-emotions_hycidp.jpg"
+              src="https://res.cloudinary.com/dt3rse8bg/image/upload/v1770810935/ChatGPT_Image_Feb_8_2026_at_11_10_44_PM_smbepi.png"
               alt="Friends having fun at a Stranger Mingle event"
               fill
               className="object-cover"
